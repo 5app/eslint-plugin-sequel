@@ -1,3 +1,10 @@
+# 1.0.0 (2020-03-06)
+
+
+### Features
+
+* **rule:** Initiate the no-unsafe-query rule ([4f35c2d](https://github.com/5app/eslint-plugin-sequel/commit/4f35c2df8c4c96303a5ee2d216e8d74c43c1efac))
+
 ## [1.2.1](https://github.com/5app/js-template/compare/v1.2.0...v1.2.1) (2019-12-12)
 
 
