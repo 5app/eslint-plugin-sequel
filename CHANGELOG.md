@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/5app/eslint-plugin-sequel/compare/v1.0.1...v1.0.2) (2020-03-06)
+
+
+### Bug Fixes
+
+* **ci:** reduce npm bundle ([67ef46c](https://github.com/5app/eslint-plugin-sequel/commit/67ef46cd62906dabfbb9c42767d0e77b68bb8eac))
+
 ## [1.0.1](https://github.com/5app/eslint-plugin-sequel/compare/v1.0.0...v1.0.1) (2020-03-06)
 
 
