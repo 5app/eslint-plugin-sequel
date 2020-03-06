@@ -1,15 +1,35 @@
-# Package Template
+# `eslint-plugin-sequel`
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/5app/package-template.svg)](https://greenkeeper.io/)
-[![CircleCI](https://circleci.com/gh/5app/package-template.svg?style=shield)](https://circleci.com/gh/5app/package-template)
+Eslint rules for inline SQL
 
-This is a template for starting new JS projects at 5app.
+## Installation
 
-## Getting started
+Install `eslint-plugin-sequel`:
 
-Run `npm init` to configure package.json
+```
+$ npm install eslint-plugin-sequel --save-dev
+```
 
-### For packages to be posted to NPM
+## Usage
 
-1. Remove the setting `private: true` from [./package.json](./package.json]).
-   This protects accidentally publishing to *npm*. If you want to publish to npm then this will prevent it until removed.
+Add `sequel` to the plugins section of your `.eslintrc` configuration file.
+
+```json
+{
+	"plugins": ["sequel"]
+}
+```
+
+Then configure the rules you want to use under the rules section.
+
+```json
+{
+	"rules": {
+		"sequel/no-unsafe-query": 2
+	}
+}
+```
+
+## Supported Rules
+
+-   Fill in provided rules here
