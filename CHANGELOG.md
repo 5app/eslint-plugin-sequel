@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/5app/eslint-plugin-sequel/compare/v1.0.0...v1.0.1) (2020-03-06)
+
+
+### Bug Fixes
+
+* **ci:** Publish to npm ([ac94983](https://github.com/5app/eslint-plugin-sequel/commit/ac94983abe454d0199272dae5b27aac3197182c5))
+
 # 1.0.0 (2020-03-06)
 
 
