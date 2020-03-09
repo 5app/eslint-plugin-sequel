@@ -9,9 +9,10 @@
 		"sql"
 	],
 	"author": "Andrew Dodson",
-	"main": "lib/index.js",
+	"main": "index.js",
 	"files": [
-		"lib/"
+		"index.js",
+		"rules/"
 	],
 	"scripts": {
 		"lint": "eslint ./",
@@ -69,7 +70,7 @@
 	"husky": {
 		"hooks": {
 			"commit-msg": "commitlint -E  HUSKY_GIT_PARAMS",
-			"pre-commit": "pretty-quick --staged && npm run precommit-msg && npm run lint-diff"
+			"pre-commit": "pretty-quick --staged && npm run precommit-msg && npm run lint"
 		}
 	}
 }

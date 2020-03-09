@@ -53,13 +53,24 @@ function validate(node, context) {
  * @param {object} context - Esline Context object
  * @returns {object} Object rule
  */
-module.exports = context => ({
-	CallExpression(node) {
-		node.arguments.forEach(argument => validate(argument, context));
+module.exports = {
+	meta: {
+		type: 'problem',
+		docs: {
+			description: 'Prevent unformatted SQL Template literals',
+			category: 'Possible security issue',
+		},
 	},
-	VariableDeclaration(node) {
-		node.declarations.forEach(declaration =>
-			validate(declaration.init, context)
-		);
+	create(context) {
+		return {
+			CallExpression(node) {
+				node.arguments.forEach(argument => validate(argument, context));
+			},
+			VariableDeclaration(node) {
+				node.declarations.forEach(declaration =>
+					validate(declaration.init, context)
+				);
+			},
+		};
 	},
-});
+};

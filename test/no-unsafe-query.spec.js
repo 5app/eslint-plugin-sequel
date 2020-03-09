@@ -1,9 +1,9 @@
 const {RuleTester} = require('eslint');
-const rule = require('../../lib/rules/no-unsafe-query');
+const rule = require('../rules/no-unsafe-query');
 
 RuleTester.setDefaultConfig({
 	parserOptions: {
-		ecmaVersion: 6,
+		ecmaVersion: 2020,
 	},
 });
 
