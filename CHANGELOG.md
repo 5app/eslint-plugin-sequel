@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/5app/eslint-plugin-sequel/compare/v1.0.2...v1.0.3) (2020-03-09)
+
+
+### Bug Fixes
+
+* **no-unsafe-query:** sql parser includes DELETE, UPDATE and INSERTs ([f1db361](https://github.com/5app/eslint-plugin-sequel/commit/f1db361d3de23321088b7be9c53b1a1ee72bb376))
+
 ## [1.0.2](https://github.com/5app/eslint-plugin-sequel/compare/v1.0.1...v1.0.2) (2020-03-06)
 
 
