@@ -12,7 +12,8 @@
 	"main": "index.js",
 	"files": [
 		"index.js",
-		"rules/"
+		"rules/",
+		"utils/"
 	],
 	"scripts": {
 		"lint": "eslint ./",
