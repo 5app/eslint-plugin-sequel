@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/5app/eslint-plugin-sequel/compare/v1.0.3...v1.0.4) (2020-03-09)
+
+
+### Bug Fixes
+
+* **regression:** missing util folder ([8ee64da](https://github.com/5app/eslint-plugin-sequel/commit/8ee64da6c84a0b7b0c676a9bd2367cc283770dcc))
+
 ## [1.0.3](https://github.com/5app/eslint-plugin-sequel/compare/v1.0.2...v1.0.3) (2020-03-09)
 
 
