@@ -66,6 +66,8 @@ ruleTester.run('no-unsafe-query', rule, {
 		'const foo = "bar"; baz.greet(`hello ${foo}`);',
 		'const foo = "bar"; const baz = `hello ${foo}`; qux.greet(baz);',
 		'foo.greet(`hello`);',
+		'foo.greet(`Select `);',
+		'foo.greet(``);',
 		'const foo = `bar`; baz.greet(foo);',
 	],
 });

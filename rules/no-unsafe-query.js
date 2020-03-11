@@ -6,15 +6,7 @@ const sqlParser = require('../utils/sqlParser.js');
  * @returns {boolean} whether string is a sql query or not
  */
 function isSqlQuery(str) {
-	if (!str) {
-		return false;
-	}
-
-	try {
-		return sqlParser(str);
-	} catch (error) {
-		return false;
-	}
+	return sqlParser(str);
 }
 
 /**
@@ -24,9 +16,6 @@ function isSqlQuery(str) {
  * @returns {void}
  */
 function validate(node, context) {
-	if (!node) {
-		return;
-	}
 	if (
 		node.type === 'TaggedTemplateExpression' &&
 		node.tag.name &&
