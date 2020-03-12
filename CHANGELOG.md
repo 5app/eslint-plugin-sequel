@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/5app/eslint-plugin-sequel/compare/v1.1.0...v1.1.1) (2020-03-12)
+
+
+### Bug Fixes
+
+* **rule/function-case:** match tagged and non-tagged SQL statements ([ce832f9](https://github.com/5app/eslint-plugin-sequel/commit/ce832f9e7378f2a966179f75b535a20213f3bb55))
+
 # [1.1.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.0.5...v1.1.0) (2020-03-12)
 
 
