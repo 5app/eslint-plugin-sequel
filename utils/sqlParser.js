@@ -9,7 +9,7 @@ module.exports = str => {
 	 */
 	let bool = /^[\s\S]*SELECT[\s\S]+/i.test(str);
 	if (bool) {
-		return /^[\s\S]*FROM[\s\S]+/i.test(str);
+		return /[\s\S]+FROM[\s\S]+/i.test(str);
 	}
 
 	/**
