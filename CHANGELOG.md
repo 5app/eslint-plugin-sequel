@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.0.5...v1.1.0) (2020-03-12)
+
+
+### Features
+
+* **rules/function-case:** New rule for fomatting SQL special words ([7970c0a](https://github.com/5app/eslint-plugin-sequel/commit/7970c0afa4ce5f3b9b58ac80a386d15d6da88ad2))
+
 ## [1.0.5](https://github.com/5app/eslint-plugin-sequel/compare/v1.0.4...v1.0.5) (2020-03-12)
 
 
