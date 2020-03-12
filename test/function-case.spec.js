@@ -24,6 +24,14 @@ ruleTester.run('function-case', rule, {
 			],
 		},
 		{
+			code: 'const sql = `select * from foobar`;',
+			errors: [
+				{
+					message: 'Uppercase SQL function names "select,from"',
+				},
+			],
+		},
+		{
 			code: 'const sql = SQL`insert INTO foobar (${column}) values `',
 			errors: [
 				{

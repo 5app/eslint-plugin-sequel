@@ -36,7 +36,7 @@ function validate(node, context) {
 	// Is this a SQL statement?
 	const literal = node.quasis.map(quasi => quasi.value.raw).join('x');
 
-	if (!tagged || !isSqlQuery(literal)) {
+	if (!tagged && !isSqlQuery(literal)) {
 		return;
 	}
 
