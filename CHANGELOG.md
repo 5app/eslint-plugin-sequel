@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/5app/eslint-plugin-sequel/compare/v1.0.4...v1.0.5) (2020-03-12)
+
+
+### Bug Fixes
+
+* **regression:** when node is empty ([a9b11c5](https://github.com/5app/eslint-plugin-sequel/commit/a9b11c5fb1b1ae7adcdc9aed45f780bd4c2181a7))
+
 ## [1.0.4](https://github.com/5app/eslint-plugin-sequel/compare/v1.0.3...v1.0.4) (2020-03-09)
 
 
