@@ -16,6 +16,10 @@ function isSqlQuery(str) {
  * @returns {void}
  */
 function validate(node, context) {
+	if (!node) {
+		return;
+	}
+
 	if (
 		node.type === 'TaggedTemplateExpression' &&
 		node.tag.name &&

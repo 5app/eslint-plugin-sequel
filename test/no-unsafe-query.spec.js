@@ -62,6 +62,7 @@ ruleTester.run('no-unsafe-query', rule, {
 		'const column = "*"; foo.query(sql`SELECT ${column} FROM foobar`);',
 		'const column = "*"; const query = SQL`SELECT ${column} FROM foobar`; foo.query(query);',
 		'foo.query(`SELECT column FROM foobar`);',
+		'let query;',
 		'const query = `SELECT column FROM foobar`; foo.query(query);',
 		'const foo = "bar"; baz.greet(`hello ${foo}`);',
 		'const foo = "bar"; const baz = `hello ${foo}`; qux.greet(baz);',
