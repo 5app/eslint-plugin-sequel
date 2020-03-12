@@ -57,6 +57,7 @@ ruleTester.run('function-case', rule, {
 		},
 	],
 	valid: [
+		'nothing like sql',
 		'SELECT ${column} FROM foobar',
 		'INSERT INTO foobar (${column}) VALUES ',
 		'UPDATE foobar SET ${column}',
