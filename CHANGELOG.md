@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.2.0...v1.3.0) (2020-03-17)
+
+
+### Features
+
+* **rules:** function-case group by order by ([51ad76a](https://github.com/5app/eslint-plugin-sequel/commit/51ad76a33e1632eef911f35072f952633c66841e))
+
 # [1.2.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.1.1...v1.2.0) (2020-03-17)
 
 
