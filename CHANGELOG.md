@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/5app/eslint-plugin-sequel/compare/v1.3.0...v1.3.1) (2020-03-17)
+
+
+### Bug Fixes
+
+* **rules:** function-case add 'NOT IN|IN|ASC|DESC|BETWEEN' ([b550fe5](https://github.com/5app/eslint-plugin-sequel/commit/b550fe5d1f6fef919af76a7adc61dd5eab83883c))
+
 # [1.3.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.2.0...v1.3.0) (2020-03-17)
 
 
