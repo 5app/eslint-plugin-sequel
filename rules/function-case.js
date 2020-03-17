@@ -49,7 +49,7 @@ function validate(node, context) {
 		}
 
 		// Special words?
-		const regexp = /\b(SELECT|AS|INSERT|INTO|UPDATE|DELETE|FROM|JOIN|LEFT|ON|WHERE|AND|OR|IS NULL|IS NOT NULL|NOT IN|IN|GROUP BY|ORDER BY|ASC|DESC|BETWEEN|\w+(?=\())\b/gi;
+		const regexp = /((?<quote>['"]).+?\2|\b(SELECT|AS|INSERT|INTO|UPDATE|DELETE|FROM|JOIN|LEFT|ON|WHERE|AND|OR|IS NULL|IS NOT NULL|NOT IN|IN|GROUP BY|ORDER BY|ASC|DESC|BETWEEN|\w+(?=\())\b)/gi;
 
 		// Propose the case of the function names
 		const test = regexp.test(text);
@@ -60,7 +60,13 @@ function validate(node, context) {
 		}
 
 		const words = new Set();
-		let proposed = text.replace(regexp, m => {
+		let proposed = text.replace(regexp, (m, ...params) => {
+			// Get the named capture groups last paramater
+			const {quote} = params.pop();
+
+			if (quote) {
+				return m;
+			}
 			const replacement = m.toUpperCase();
 			if (m !== replacement) {
 				words.add(m);
