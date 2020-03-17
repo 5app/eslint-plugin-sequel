@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.1.1...v1.2.0) (2020-03-17)
+
+
+### Features
+
+* **rules:** update function-case to include functions ([ff30898](https://github.com/5app/eslint-plugin-sequel/commit/ff30898c3b0cbf41cf6b45ca6e1c5aa54d762d56))
+
 ## [1.1.1](https://github.com/5app/eslint-plugin-sequel/compare/v1.1.0...v1.1.1) (2020-03-12)
 
 
