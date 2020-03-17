@@ -55,9 +55,18 @@ ruleTester.run('function-case', rule, {
 				},
 			],
 		},
+		{
+			code: 'const sql = SQL`SELECT max(id) FROM foobar WHERE ${column}`',
+			errors: [
+				{
+					message: 'Uppercase SQL function names "max"',
+				},
+			],
+		},
 	],
 	valid: [
 		'nothing like sql',
+		'SELECT MAX(${column}) FROM foobar',
 		'SELECT ${column} FROM foobar',
 		'INSERT INTO foobar (${column}) VALUES ',
 		'UPDATE foobar SET ${column}',
