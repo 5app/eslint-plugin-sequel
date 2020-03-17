@@ -49,7 +49,7 @@ function validate(node, context) {
 		}
 
 		// Special words?
-		const regexp = /\b(SELECT|AS|INSERT|INTO|UPDATE|DELETE|FROM|JOIN|LEFT|ON|WHERE|AND|OR|IS NULL|IS NOT NULL|\w+(?=\())\b/gi;
+		const regexp = /\b(SELECT|AS|INSERT|INTO|UPDATE|DELETE|FROM|JOIN|LEFT|ON|WHERE|AND|OR|IS NULL|IS NOT NULL|GROUP BY|ORDER BY|\w+(?=\())\b/gi;
 
 		// Propose the case of the function names
 		const test = regexp.test(text);

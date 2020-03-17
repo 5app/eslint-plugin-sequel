@@ -56,10 +56,14 @@ ruleTester.run('function-case', rule, {
 			],
 		},
 		{
-			code: 'const sql = SQL`SELECT max(id) FROM foobar WHERE ${column}`',
+			code:
+				'const sql = SQL`SELECT max(id) AS latest FROM foobar WHERE ${column} group by id`',
 			errors: [
 				{
 					message: 'Uppercase SQL function names "max"',
+				},
+				{
+					message: 'Uppercase SQL function names "group by"',
 				},
 			],
 		},
