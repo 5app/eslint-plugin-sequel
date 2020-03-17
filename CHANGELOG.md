@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/5app/eslint-plugin-sequel/compare/v1.3.2...v1.3.3) (2020-03-17)
+
+
+### Bug Fixes
+
+* **rules:** function-case ignore keywords in quotes ([75ac87f](https://github.com/5app/eslint-plugin-sequel/commit/75ac87f1c1c1b3b35ba153e93f8e074912fd1389))
+
 ## [1.3.2](https://github.com/5app/eslint-plugin-sequel/compare/v1.3.1...v1.3.2) (2020-03-17)
 
 
