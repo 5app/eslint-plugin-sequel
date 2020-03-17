@@ -70,6 +70,7 @@ ruleTester.run('function-case', rule, {
 	],
 	valid: [
 		'nothing like sql',
+		'could not delete from sql',
 		'SELECT MAX(${column}) FROM foobar',
 		'SELECT ${column} FROM foobar',
 		'INSERT INTO foobar (${column}) VALUES ',

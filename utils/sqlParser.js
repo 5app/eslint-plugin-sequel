@@ -7,33 +7,33 @@ module.exports = str => {
 	/**
 	 * Is this a SELECT?
 	 */
-	let bool = /^[\s\S]*SELECT[\s\S]+/i.test(str);
+	let bool = /^\s*SELECT\s+/i.test(str);
 	if (bool) {
-		return /[\s\S]+FROM[\s\S]+/i.test(str);
+		return /\s+FROM\s+/i.test(str);
 	}
 
 	/**
 	 * Is this a INSERT
 	 */
-	bool = /^[\s\S]*INSERT[\s\S]+((LOW_PRIORITY|DELAYED|HIGH_PRIORITY)[\s\S]+)?(IGNORE[\s\S]+)?INTO[\s\S]+/i.test(
+	bool = /^\s*INSERT\s+((LOW_PRIORITY|DELAYED|HIGH_PRIORITY)\s+)?(IGNORE\s+)?INTO\s+/i.test(
 		str
 	);
 	if (bool) {
-		return /[\s\S]+VALUES?[\s\S]+/i.test(str);
+		return /\s+VALUES?\s+/i.test(str);
 	}
 
 	/**
 	 * Is this a UPDATE?
 	 */
-	bool = /^[\s\S]*UPDATE[\s\S]+/i.test(str);
+	bool = /^\s*UPDATE\s+/i.test(str);
 	if (bool) {
-		return /[\s\S]+SET[\s\S]+/i.test(str);
+		return /\s+SET\s+/i.test(str);
 	}
 
 	/**
 	 * Is this a DELETE?
 	 */
-	bool = /^[\s\S]*DELETE[\s\S]+FROM[\s\S]+/i.test(str);
+	bool = /^\s*DELETE\s+FROM\s+/i.test(str);
 
 	return bool;
 };
