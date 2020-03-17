@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/5app/eslint-plugin-sequel/compare/v1.3.1...v1.3.2) (2020-03-17)
+
+
+### Bug Fixes
+
+* **sql-detector:** ensures it's the first part of the string ([b799035](https://github.com/5app/eslint-plugin-sequel/commit/b799035b547627c1e2b2894017fb8b60c27585ad))
+
 ## [1.3.1](https://github.com/5app/eslint-plugin-sequel/compare/v1.3.0...v1.3.1) (2020-03-17)
 
 
