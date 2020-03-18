@@ -48,7 +48,9 @@ ruleTester.run('function-case', rule, {
 			],
 		},
 		{
-			code: 'const sql = SQL`Delete FROM foobar WHERE ${column}`',
+			code: `const sql = SQL\`
+				Delete FROM foobar WHERE \${column}
+			\``,
 			errors: [
 				{
 					message: 'Uppercase SQL function names "Delete"',
