@@ -1,97 +1,53 @@
-const sqlParser = require('../utils/sqlParser.js');
+const createSQLTemplateElementHandler = require('../utils/createSQLTemplateElementHandler');
 
 /**
- * Check if a SQL query
- * @param {string} str - Check if string is a SQL query
- * @returns {boolean} whether string is a sql query or not
+ * Template Element Handler for Function Case
+ * @param {object} node - Element Node
+ * @returns {object} Returns a format object or undefined
  */
-function isSqlQuery(str) {
-	return sqlParser(str);
-}
+function templateElementHandler(node) {
+	const text = node.value.raw;
 
-/**
- * Validate node.
- * @param {object} node - Node
- * @param {object} context - Rule Context
- * @returns {void}
- */
-function validate(node, context) {
-	// Is this tagged template literal?
-	const tagged =
-		node &&
-		node.type === 'TaggedTemplateExpression' &&
-		node.tag.name &&
-		node.tag.name.toLowerCase() === 'sql';
+	// Special words?
+	const regexp = /((?<quote>['"]).+?\2|\b(SELECT|AS|INSERT|INTO|UPDATE|DELETE|FROM|JOIN|LEFT|ON|WHERE|AND|OR|IS NULL|IS NOT NULL|NOT IN|IN|GROUP BY|ORDER BY|ASC|DESC|BETWEEN|\w+(?=\())\b)/gi;
 
-	// If tagged, get the child...
-	if (tagged) {
-		node = node.quasi;
-	}
+	// Propose the case of the function names
+	const test = regexp.test(text);
 
-	// Ignore non-template literals..
-	if (!node || node.type !== 'TemplateLiteral') {
+	// No matches?
+	if (!test) {
 		return;
 	}
 
-	// Is this a SQL statement?
-	const literal = node.quasis.map(quasi => quasi.value.raw).join('x');
+	const words = new Set();
+	const fix = text.replace(regexp, (m, ...params) => {
+		// Get the named capture groups last paramater
+		const {quote} = params.pop();
 
-	if (!tagged && !isSqlQuery(literal)) {
-		return;
-	}
-
-	// Loop through each of the TemplateElements
-	node.quasis.forEach((node, index) => {
-		const text = node.value.raw;
-
-		if (!text || node.type !== 'TemplateElement') {
-			return;
+		if (quote) {
+			return m;
 		}
-
-		// Special words?
-		const regexp = /((?<quote>['"]).+?\2|\b(SELECT|AS|INSERT|INTO|UPDATE|DELETE|FROM|JOIN|LEFT|ON|WHERE|AND|OR|IS NULL|IS NOT NULL|NOT IN|IN|GROUP BY|ORDER BY|ASC|DESC|BETWEEN|\w+(?=\())\b)/gi;
-
-		// Propose the case of the function names
-		const test = regexp.test(text);
-
-		// No matches?
-		if (!test) {
-			return;
+		const replacement = m.toUpperCase();
+		if (m !== replacement) {
+			words.add(m);
 		}
-
-		const words = new Set();
-		let proposed = text.replace(regexp, (m, ...params) => {
-			// Get the named capture groups last paramater
-			const {quote} = params.pop();
-
-			if (quote) {
-				return m;
-			}
-			const replacement = m.toUpperCase();
-			if (m !== replacement) {
-				words.add(m);
-			}
-			return replacement;
-		});
-
-		// Make into Array
-		const replacing = [...words];
-
-		if (proposed !== text) {
-			// Wrap between expressions
-			proposed =
-				(index ? '}' : '`') + proposed + (node.tail ? '`' : '${');
-
-			context.report({
-				node,
-				message: 'Uppercase SQL function names "{{replacing}}"',
-				data: {
-					replacing,
-				},
-				fix: fixer => fixer.replaceText(node, proposed),
-			});
-		}
+		return replacement;
 	});
+
+	// Make into Array
+	const replacing = [...words];
+
+	if (fix !== text) {
+		// Wrap between expressions
+
+		return {
+			message: 'Uppercase SQL function names "{{replacing}}"',
+			data: {
+				replacing,
+			},
+			fix,
+		};
+	}
 }
 
 /**
@@ -102,23 +58,12 @@ function validate(node, context) {
  */
 module.exports = {
 	meta: {
-		type: 'problem',
+		type: 'layout',
 		docs: {
 			description: 'Enforce SQL formatting of special words',
-			category: 'Stylistic',
+			category: 'Stylistic Issues',
 		},
-		fixable: true,
+		fixable: 'whitespace',
 	},
-	create(context) {
-		return {
-			CallExpression(node) {
-				node.arguments.forEach(argument => validate(argument, context));
-			},
-			VariableDeclaration(node) {
-				node.declarations.forEach(declaration =>
-					validate(declaration.init, context)
-				);
-			},
-		};
-	},
+	create: createSQLTemplateElementHandler({templateElementHandler}),
 };
