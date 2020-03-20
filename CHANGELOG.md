@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.3.3...v1.4.0) (2020-03-20)
+
+
+### Features
+
+* **rule/spacing:** Add new spacing rule ([3246fbe](https://github.com/5app/eslint-plugin-sequel/commit/3246fbe2c94cd75ddc42193ce7b8dc79c77815af))
+
 ## [1.3.3](https://github.com/5app/eslint-plugin-sequel/compare/v1.3.2...v1.3.3) (2020-03-17)
 
 
