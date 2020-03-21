@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/5app/eslint-plugin-sequel/compare/v1.4.0...v1.4.1) (2020-03-21)
+
+
+### Bug Fixes
+
+* **sequel/spacing:** honour multilines ([f099acb](https://github.com/5app/eslint-plugin-sequel/commit/f099acbc2a504c2254fa7adc0c252c444690cd58))
+
 # [1.4.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.3.3...v1.4.0) (2020-03-20)
 
 
