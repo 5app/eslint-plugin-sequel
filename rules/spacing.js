@@ -9,6 +9,7 @@ function templateElementHandler(node) {
 	const text = node.value.raw;
 
 	// CRLF
+	/* istanbul ignore next */
 	const newline = /\r\n/.test(text) ? '\r\n' : '\n';
 
 	// Loop through the lines...
