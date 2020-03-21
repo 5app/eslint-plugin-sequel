@@ -34,10 +34,14 @@ ruleTester.run('spacing', rule, {
 		},
 		{
 			// Tabs instead of spaces...
-			code: `const sql = SQL\`select   \${column}
-            from foobar\`;
-            `,
+			code: `const sql = SQL\`  
+            select   \${column}      
+            from     foobar     
+            \`;`,
 			errors: [
+				{
+					message: 'Multiple spaces',
+				},
 				{
 					message: 'Multiple spaces',
 				},

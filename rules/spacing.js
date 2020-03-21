@@ -8,20 +8,38 @@ const createSQLTemplateElementHandler = require('../utils/createSQLTemplateEleme
 function templateElementHandler(node) {
 	const text = node.value.raw;
 
-	// Special words?
-	const regexp = /((?<quote>['"]).+?\2|([\t\s]+))/gi;
+	// CRLF
+	const newline = /\r\n/.test(text) ? '\r\n' : '\n';
 
-	const fix = text.replace(regexp, (m, ...params) => {
-		// Get the named capture groups last paramater
-		const {quote} = params.pop();
+	// Loop through the lines...
+	const lines = text.split(newline);
 
-		if (quote || m === ' ' || m.startsWith('\n')) {
-			return m;
-		}
+	// Loop through lines
+	const fix = lines
+		.map((line, index) => {
+			// Find spaces
+			const regexp = /(?<quote>['"]).+?\1|\s+/gi;
 
-		// Single white space
-		return ' ';
-	});
+			// For all but the last line...
+			if (index < lines.length - 1) {
+				// trim white space from the end.
+				line = line.trimEnd();
+			}
+
+			return line.replace(regexp, (m, _, regIndex, original, groups) => {
+				// Get the named capture groups last paramater
+				const {quote} = groups;
+
+				// Ignore quotes, ignore start of lines, unless it's the first line...
+				if (quote || (index !== 0 && regIndex === 0)) {
+					return m;
+				}
+
+				// Single white space
+				return ' ';
+			});
+		})
+		.join(newline);
 
 	if (fix !== text) {
 		// Wrap between expressions
@@ -46,7 +64,7 @@ module.exports = {
 			description: 'Enforce SQL spacing',
 			category: 'Stylistic Issues',
 		},
-		fixable: true,
+		fixable: 'whitespace',
 	},
 	create: createSQLTemplateElementHandler({templateElementHandler}),
 };
