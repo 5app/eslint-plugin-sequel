@@ -48,13 +48,12 @@ function validate(node, context, {templateElementHandler}) {
 			return;
 		}
 
-		const meta = templateElementHandler(node);
+		const meta = templateElementHandler(node, context);
 
 		if (meta) {
 			const {fix, ...report} = meta;
 
-			// TODO: make this block conditional if (fix)
-			{
+			if (fix) {
 				const proposed =
 					(index ? '}' : '`') + fix + (node.tail ? '`' : '${');
 				report.fix = fixer => fixer.replaceText(node, proposed);
