@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.4.1...v1.5.0) (2020-03-21)
+
+
+### Features
+
+* **sequel/no-shorthand-all:** new rule ([e3c601b](https://github.com/5app/eslint-plugin-sequel/commit/e3c601bfba768f2b96fb81b8d5bda40ed6ba6c98))
+
 ## [1.4.1](https://github.com/5app/eslint-plugin-sequel/compare/v1.4.0...v1.4.1) (2020-03-21)
 
 
