@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/5app/eslint-plugin-sequel/compare/v1.5.0...v1.5.1) (2020-03-22)
+
+
+### Bug Fixes
+
+* **rules:** do not match comments /**/ ([1175f95](https://github.com/5app/eslint-plugin-sequel/commit/1175f9519599235bc5f0e98a4168e6bcc5c0c4a1))
+
 # [1.5.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.4.1...v1.5.0) (2020-03-21)
 
 
