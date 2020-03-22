@@ -37,7 +37,7 @@ function templateElementHandler(node, {options}) {
 }
 
 /**
- * Export `function-case`.
+ * Export `no-shorthand-all`.
  *
  * @param {object} context - Eslint Context object
  * @returns {object} Object rule
