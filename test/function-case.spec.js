@@ -76,6 +76,7 @@ ruleTester.run('function-case', rule, {
 		'SELECT MAX(${column}) FROM foobar WHERE a IN ("in")',
 		'SELECT MAX(${column}) FROM foobar',
 		'SELECT ${column} FROM foobar',
+		'SELECT /** select something from somewhere */ id FROM foobar',
 		'INSERT INTO foobar (${column}) VALUES ',
 		'UPDATE foobar SET ${column}',
 		'DELETE FROM foobar WHERE ${column}',

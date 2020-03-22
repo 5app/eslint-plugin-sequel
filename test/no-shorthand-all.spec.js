@@ -50,7 +50,11 @@ ruleTester.run('no-shorthand-all', rule, {
 	valid: [
 		'nothing like       sql',
 		'could not delete from sql',
-		'SELECT MAX(${column}) FROM foobar WHERE a IN ("in")',
+		`SELECT 
+            /** This should be ignored * */
+            MAX(\${column}) FROM foobar WHERE a IN ("in")
+        
+        `,
 		{
 			sql: 'SELECT COUNT(*) FROM foobar',
 			options: [
