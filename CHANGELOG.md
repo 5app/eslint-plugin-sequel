@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/5app/eslint-plugin-sequel/compare/v1.5.1...v1.5.2) (2020-03-23)
+
+
+### Bug Fixes
+
+* **sequel/no-shorthand-all:** ignore multiplication ([173d493](https://github.com/5app/eslint-plugin-sequel/commit/173d493aafe05f7aa3044bef742c80d48ee28641))
+
 ## [1.5.1](https://github.com/5app/eslint-plugin-sequel/compare/v1.5.0...v1.5.1) (2020-03-22)
 
 
