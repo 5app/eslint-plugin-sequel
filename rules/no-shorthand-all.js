@@ -13,7 +13,7 @@ function templateElementHandler(node, {options}) {
 	const {allowCountAll, allowQualified} = options && (options[0] || {});
 
 	// Special words?
-	const regexp = /(?<quote>['"]).+?\1|(?<comment>\/\*.+?\*\/)|(?<count>COUNT\((DISTINCT\s)?\s*(\w+\.)?\*\s*\))|(?<qualified>\w+\.)?\*/gi;
+	const regexp = /(?<quote>['"]).+?\1|(?<comment>\/\*.+?\*\/)|(?<count>COUNT\((DISTINCT\s)?\s*(\w+\.)?\*\s*\))|(?<qualified>\w+\.)?\*(?=\s*(\)|,|FROM))/gi;
 
 	// Propose the case of the function names
 	let match;

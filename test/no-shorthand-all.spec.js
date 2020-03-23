@@ -54,7 +54,8 @@ ruleTester.run('no-shorthand-all', rule, {
             /** This should be ignored * */
             MAX(\${column}) FROM foobar WHERE a IN ("in")
         
-        `,
+		`,
+		'SELECT NUMBER(a * 2), a * 1 FROM foobar',
 		{
 			sql: 'SELECT COUNT(*) FROM foobar',
 			options: [
