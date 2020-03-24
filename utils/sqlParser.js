@@ -3,7 +3,7 @@
  * @param {string} str - String to tests
  * @returns {boolean} true if the String is SQL'ish, otherwise false
  */
-module.exports = str => {
+module.exports = (str) => {
 	/**
 	 * Is this a SELECT?
 	 */

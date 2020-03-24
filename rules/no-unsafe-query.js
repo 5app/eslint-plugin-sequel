@@ -29,7 +29,7 @@ function validate(node, context) {
 	}
 
 	if (node.type === 'TemplateLiteral' && node.expressions.length) {
-		const literal = node.quasis.map(quasi => quasi.value.raw).join('x');
+		const literal = node.quasis.map((quasi) => quasi.value.raw).join('x');
 
 		if (isSqlQuery(literal)) {
 			context.report(
@@ -57,10 +57,12 @@ module.exports = {
 	create(context) {
 		return {
 			CallExpression(node) {
-				node.arguments.forEach(argument => validate(argument, context));
+				node.arguments.forEach((argument) =>
+					validate(argument, context)
+				);
 			},
 			VariableDeclaration(node) {
-				node.declarations.forEach(declaration =>
+				node.declarations.forEach((declaration) =>
 					validate(declaration.init, context)
 				);
 			},

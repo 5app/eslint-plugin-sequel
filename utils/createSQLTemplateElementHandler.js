@@ -34,7 +34,7 @@ function validate(node, context, {templateElementHandler}) {
 	}
 
 	// Is this a SQL statement?
-	const literal = node.quasis.map(quasi => quasi.value.raw).join('x');
+	const literal = node.quasis.map((quasi) => quasi.value.raw).join('x');
 
 	if (!tagged && !isSqlQuery(literal)) {
 		return;
@@ -56,7 +56,7 @@ function validate(node, context, {templateElementHandler}) {
 			if (fix) {
 				const proposed =
 					(index ? '}' : '`') + fix + (node.tail ? '`' : '${');
-				report.fix = fixer => fixer.replaceText(node, proposed);
+				report.fix = (fixer) => fixer.replaceText(node, proposed);
 			}
 
 			context.report({
@@ -68,15 +68,15 @@ function validate(node, context, {templateElementHandler}) {
 }
 
 function createSQLTemplateElementHandler(handlers) {
-	return context => {
+	return (context) => {
 		return {
 			CallExpression(node) {
-				node.arguments.forEach(argument =>
+				node.arguments.forEach((argument) =>
 					validate(argument, context, handlers)
 				);
 			},
 			VariableDeclaration(node) {
-				node.declarations.forEach(declaration =>
+				node.declarations.forEach((declaration) =>
 					validate(declaration.init, context, handlers)
 				);
 			},
