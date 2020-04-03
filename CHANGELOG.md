@@ -1,3 +1,10 @@
+## [1.5.3](https://github.com/5app/eslint-plugin-sequel/compare/v1.5.2...v1.5.3) (2020-04-03)
+
+
+### Bug Fixes
+
+* **discovery:** found some literals weren't covered ([c430964](https://github.com/5app/eslint-plugin-sequel/commit/c4309641b3b55cabc25fe6e86a214ed87ac6f2f8))
+
 ## [1.5.2](https://github.com/5app/eslint-plugin-sequel/compare/v1.5.1...v1.5.2) (2020-03-23)
 
 
