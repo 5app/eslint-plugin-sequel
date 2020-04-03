@@ -69,6 +69,15 @@ ruleTester.run('function-case', rule, {
 				},
 			],
 		},
+		{
+			code:
+				'const join = boolean || SQL`\njoin foobar f on (a.id = f.id)`',
+			errors: [
+				{
+					message: 'Uppercase SQL function names "join,on"',
+				},
+			],
+		},
 	],
 	valid: [
 		'nothing like sql',
