@@ -1,4 +1,5 @@
 const sqlParser = require('./sqlParser.js');
+const isTagged = require('./isTagged.js');
 
 /**
  * Check if a SQL query
@@ -17,14 +18,10 @@ function createSQLTemplateElementHandler({templateElementHandler}) {
 		 * @returns {void}
 		 */
 		function validate(node) {
-			// Was this tagged?
-			// Is this tagged template literal?
 			const {parent} = node;
-			const tagged =
-				parent &&
-				parent.type === 'TaggedTemplateExpression' &&
-				parent.tag.name &&
-				parent.tag.name.toLowerCase() === 'sql';
+
+			// Is this tagged template literal?
+			const tagged = isTagged(parent);
 
 			// Is this a SQL statement?
 			const literal = node.quasis

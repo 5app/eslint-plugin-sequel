@@ -1,20 +1,6 @@
-const sqlParser = require('../utils/sqlParser.js');
+const isSqlQuery = require('../utils/sqlParser.js');
+const isTagged = require('../utils/isTagged.js');
 
-/**
- * Check if a SQL query
- * @param {string} str - Check if string is a SQL query
- * @returns {boolean} whether string is a sql query or not
- */
-function isSqlQuery(str) {
-	return sqlParser(str);
-}
-
-/**
- * Export `no-unsafe-query`.
- *
- * @param {object} context - Esline Context object
- * @returns {object} Object rule
- */
 module.exports = {
 	meta: {
 		type: 'problem',
@@ -23,6 +9,13 @@ module.exports = {
 			category: 'Possible security issue',
 		},
 	},
+
+	/**
+	 * Create `no-unsafe-query` rule
+	 *
+	 * @param {object} context - Eslint Context object
+	 * @returns {object} Object rule
+	 */
 	create(context) {
 		/**
 		 * Validate node.
@@ -33,11 +26,7 @@ module.exports = {
 			const {parent} = node;
 
 			// Tagged with a 'SQL' like name?
-			const tagged =
-				parent &&
-				parent.type === 'TaggedTemplateExpression' &&
-				parent.tag.name &&
-				parent.tag.name.toLowerCase() === 'sql';
+			const tagged = isTagged(parent);
 
 			// If this has TemplateExpressions, e.g. `SELECT ${expression}...`
 			if (!tagged && node.expressions.length) {

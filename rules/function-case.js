@@ -9,7 +9,7 @@ function templateElementHandler(node) {
 	const text = node.value.raw;
 
 	// Special words?
-	const regexp = /((?<quote>['"]).+?\2|(?<comment>\/\*.+?\*\/)|\b(SELECT|AS|INSERT|INTO|UPDATE|DELETE|FROM|JOIN|LEFT|ON|WHERE|AND|OR|IS NULL|IS NOT NULL|NOT IN|IN|GROUP BY|ORDER BY|ASC|DESC|BETWEEN|\w+(?=\())\b)/gi;
+	const regexp = /((?<quote>['"]).+?\2|(?<comment>\/\*.+?\*\/)|\b(SELECT|DISTINCT|AS|INSERT|INTO|UPDATE|SET|DELETE|FROM|JOIN|LEFT|ON|WHERE|AND|OR|IS NULL|IS NOT NULL|NOT IN|IN|GROUP BY|ORDER BY|ASC|DESC|BETWEEN|\w+(?=\())\b)/gi;
 
 	// Propose the case of the function names
 	const test = regexp.test(text);
