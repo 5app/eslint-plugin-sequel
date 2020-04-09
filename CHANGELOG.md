@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.5.3...v1.6.0) (2020-04-09)
+
+
+### Features
+
+* **rules:** add max-prepared ([4ff450e](https://github.com/5app/eslint-plugin-sequel/commit/4ff450e68497a01118e46928afe40d6bf96638e1))
+
 ## [1.5.3](https://github.com/5app/eslint-plugin-sequel/compare/v1.5.2...v1.5.3) (2020-04-03)
 
 
