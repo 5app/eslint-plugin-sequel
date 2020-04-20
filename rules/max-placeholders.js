@@ -2,9 +2,9 @@ const isSqlQuery = require('../utils/sqlParser.js');
 const isTagged = require('../utils/isTagged.js');
 
 /**
- * Max Prepared
+ * Max Placeholders
  * The `?` characters are pretty evil
- * - It can make code hard to maintain when queries are big.
+ * - They can make code hard to read and maintain when queries have alot of input variables.
  * - mysql.js regard the `?` character within comments and strings as a prepared statements which is confusing
  * See https://github.com/mysqljs/mysql#escaping-query-values
  * e.g. query(`SELECT CONCAT(question, '?') FROM questions WHERE question LIKE '?'`, ["why"]`)
@@ -16,7 +16,7 @@ module.exports = {
 		type: 'suggestion',
 		docs: {
 			description:
-				'enforces a maximum number of prepared values in query',
+				'enforces a maximum number of placeholder values in query',
 			category: 'Possible confusion',
 		},
 		schema: [
@@ -45,12 +45,12 @@ module.exports = {
 		],
 		messages: {
 			exceed:
-				'SQL statement has too many prepared `?` parameters ({{count}}). Maximum allowed is {{max}}.',
+				'SQL statement has too many placeholders `?` appears ({{count}}). Maximum allowed is {{max}}.',
 		},
 	},
 
 	/**
-	 * Create `max-prepared` rule
+	 * Create `max-placeholders` rule
 	 *
 	 * @param {object} context - Eslint Context object
 	 * @returns {object} Object rule

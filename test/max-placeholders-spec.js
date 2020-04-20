@@ -1,5 +1,5 @@
 const {RuleTester} = require('eslint');
-const rule = require('../rules/max-prepared');
+const rule = require('../rules/max-placeholders');
 
 RuleTester.setDefaultConfig({
 	parserOptions: {
@@ -10,7 +10,7 @@ RuleTester.setDefaultConfig({
 // Initiate RuleTester
 const ruleTester = new RuleTester();
 
-ruleTester.run('max-prepared', rule, {
+ruleTester.run('max-placeholders', rule, {
 	invalid: [
 		{
 			code: 'const sql = `select ${column} from foobar WHERE id = ?`;',
