@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.6.0...v1.7.0) (2020-04-20)
+
+
+### Features
+
+* **rules:** rename max-prepared to max-placeholders ([f4b9a8b](https://github.com/5app/eslint-plugin-sequel/commit/f4b9a8b31555ddd1837b399c3371538c21c151e6))
+
 # [1.6.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.5.3...v1.6.0) (2020-04-09)
 
 
