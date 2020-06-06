@@ -7,6 +7,10 @@ RuleTester.setDefaultConfig({
 	},
 });
 
+const unsafeInjection = {
+	messageId: 'unsafeInjection',
+};
+
 // Initiate RuleTester
 const ruleTester = new RuleTester();
 
@@ -21,39 +25,19 @@ ruleTester.run('no-unsafe-query', rule, {
 			...arr,
 			{
 				code: `const column = "*"; foo.query(\`${expression}\`);`,
-				errors: [
-					{
-						message:
-							'Use the `sql` tagged template literal for raw queries',
-					},
-				],
+				errors: [unsafeInjection],
 			},
 			{
 				code: `const column = "*"; const query = \`${expression}\`; foo.query(query);`,
-				errors: [
-					{
-						message:
-							'Use the `sql` tagged template literal for raw queries',
-					},
-				],
+				errors: [unsafeInjection],
 			},
 			{
 				code: `const column = "*"; foo.query(foobar\`${expression}\`);`,
-				errors: [
-					{
-						message:
-							'Use the `sql` tagged template literal for raw queries',
-					},
-				],
+				errors: [unsafeInjection],
 			},
 			{
 				code: `const column = "*"; const query = foobar\`${expression}\`; foo.query(query);`,
-				errors: [
-					{
-						message:
-							'Use the `sql` tagged template literal for raw queries',
-					},
-				],
+				errors: [unsafeInjection],
 			},
 		],
 		[]
