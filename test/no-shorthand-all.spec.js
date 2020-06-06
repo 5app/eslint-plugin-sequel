@@ -7,6 +7,10 @@ RuleTester.setDefaultConfig({
 	},
 });
 
+const noShorthandAll = {
+	messageId: 'noShorthandAll',
+};
+
 // Initiate RuleTester
 const ruleTester = new RuleTester();
 
@@ -14,11 +18,7 @@ ruleTester.run('no-shorthand-all', rule, {
 	invalid: [
 		{
 			sql: 'select * from foobar',
-			errors: [
-				{
-					messageId: 'noShorthandAll',
-				},
-			],
+			errors: [noShorthandAll],
 		},
 		{
 			sql: 'select count(*) from foobar',
@@ -27,11 +27,7 @@ ruleTester.run('no-shorthand-all', rule, {
 					allowCountAll: false,
 				},
 			],
-			errors: [
-				{
-					messageId: 'noShorthandAll',
-				},
-			],
+			errors: [noShorthandAll],
 		},
 		{
 			sql: 'SELECT a.* FROM foobar a',
@@ -40,11 +36,7 @@ ruleTester.run('no-shorthand-all', rule, {
 					allowQualified: false,
 				},
 			],
-			errors: [
-				{
-					messageId: 'noShorthandAll',
-				},
-			],
+			errors: [noShorthandAll],
 		},
 	].map(mapInlineSQL),
 	valid: [
