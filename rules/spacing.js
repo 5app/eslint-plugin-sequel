@@ -46,7 +46,7 @@ function templateElementHandler(node) {
 		// Wrap between expressions
 
 		return {
-			message: 'Multiple spaces',
+			messageId: 'multipleSpaces',
 			fix,
 		};
 	}
@@ -66,6 +66,9 @@ module.exports = {
 			category: 'Stylistic Issues',
 		},
 		fixable: 'whitespace',
+		messages: {
+			multipleSpaces: 'Multiple spaces',
+		},
 	},
 	create: createSQLTemplateElementHandler({templateElementHandler}),
 };

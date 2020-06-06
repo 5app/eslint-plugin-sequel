@@ -7,6 +7,10 @@ RuleTester.setDefaultConfig({
 	},
 });
 
+const multiError = {
+	messageId: 'multipleSpaces',
+};
+
 // Initiate RuleTester
 const ruleTester = new RuleTester();
 
@@ -14,23 +18,14 @@ ruleTester.run('spacing', rule, {
 	invalid: [
 		{
 			code: 'const sql = SQL`select ${column}    from foobar`;',
-			errors: [
-				{
-					message: 'Multiple spaces',
-				},
-			],
+			output: 'const sql = SQL`select ${column} from foobar`;',
+			errors: [multiError],
 		},
 		{
 			// Tabs instead of spaces...
 			code: 'const sql = SQL`select   ${column} from  foobar`;',
-			errors: [
-				{
-					message: 'Multiple spaces',
-				},
-				{
-					message: 'Multiple spaces',
-				},
-			],
+			output: 'const sql = SQL`select ${column} from foobar`;',
+			errors: [multiError, multiError],
 		},
 		{
 			// Tabs instead of spaces...
@@ -38,14 +33,11 @@ ruleTester.run('spacing', rule, {
             select   \${column}      
             from     foobar     
             \`;`,
-			errors: [
-				{
-					message: 'Multiple spaces',
-				},
-				{
-					message: 'Multiple spaces',
-				},
-			],
+			output: `const sql = SQL\`
+            select \${column}
+            from foobar
+            \`;`,
+			errors: [multiError, multiError],
 		},
 	],
 	valid: [
