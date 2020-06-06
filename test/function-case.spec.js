@@ -7,6 +7,15 @@ RuleTester.setDefaultConfig({
 	},
 });
 
+function errorUpper(keynames) {
+	return {
+		messageId: 'shouldBeUpperCase',
+		data: {
+			keynames,
+		},
+	};
+}
+
 // Initiate RuleTester
 const ruleTester = new RuleTester();
 
@@ -14,69 +23,46 @@ ruleTester.run('function-case', rule, {
 	invalid: [
 		{
 			code: 'const sql = SQL`select ${column} from foobar`;',
-			errors: [
-				{
-					message: 'Uppercase SQL function names "select"',
-				},
-				{
-					message: 'Uppercase SQL function names "from"',
-				},
-			],
+			output: 'const sql = SQL`SELECT ${column} FROM foobar`;',
+			errors: [errorUpper('select'), errorUpper('from')],
 		},
 		{
 			code: 'const sql = `select * from foobar`;',
-			errors: [
-				{
-					message: 'Uppercase SQL function names "select,from"',
-				},
-			],
+			output: 'const sql = `SELECT * FROM foobar`;',
+			errors: [errorUpper('select,from')],
 		},
 		{
 			code: 'const sql = SQL`insert INTO foobar (${column}) values `',
-			errors: [
-				{
-					message: 'Uppercase SQL function names "insert"',
-				},
-			],
+			output: 'const sql = SQL`INSERT INTO foobar (${column}) VALUES `',
+			errors: [errorUpper('insert'), errorUpper('values')],
 		},
 		{
-			code: 'const sql = SQL`update foobar SET ${column}`',
-			errors: [
-				{
-					message: 'Uppercase SQL function names "update"',
-				},
-			],
+			code: 'const sql = SQL`update foobar Set ${column}`',
+			output: 'const sql = SQL`UPDATE foobar SET ${column}`',
+			errors: [errorUpper('update,Set')],
 		},
 		{
 			code: `const sql = SQL\`
 				Delete FROM foobar WHERE \${column}
 			\``,
-			errors: [
-				{
-					message: 'Uppercase SQL function names "Delete"',
-				},
-			],
+			output: `const sql = SQL\`
+				DELETE FROM foobar WHERE \${column}
+			\``,
+			errors: [errorUpper('Delete')],
 		},
 		{
 			code:
 				'const sql = SQL`SELECT max(id) AS latest FROM foobar WHERE ${column} group by id`',
-			errors: [
-				{
-					message: 'Uppercase SQL function names "max"',
-				},
-				{
-					message: 'Uppercase SQL function names "group by"',
-				},
-			],
+			output:
+				'const sql = SQL`SELECT MAX(id) AS latest FROM foobar WHERE ${column} GROUP BY id`',
+			errors: [errorUpper('max'), errorUpper('group by')],
 		},
 		{
 			code:
 				'const join = boolean || SQL`\njoin foobar f on (a.id = f.id)`',
-			errors: [
-				{
-					message: 'Uppercase SQL function names "join,on"',
-				},
-			],
+			output:
+				'const join = boolean || SQL`\nJOIN foobar f ON (a.id = f.id)`',
+			errors: [errorUpper('join,on')],
 		},
 	],
 	valid: [
