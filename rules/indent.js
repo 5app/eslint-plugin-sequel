@@ -68,6 +68,55 @@ module.exports = {
 		}
 
 		/**
+		 * Replace Indent
+		 * @param {object} offset - Offset from which everything should start
+		 * @returns {Function} Replace function
+		 */
+		function replaceIndent(offset) {
+			const offsetType = offset[0] === '\t' ? 'tab' : 'space';
+
+			const indent = offsetType === 'tab' ? '\t' : ' '.repeat(indentSize);
+
+			const indentOffset = offset + indent;
+
+			return (whitespace) => {
+				// Formatted whitespace prefix
+				const prefix = replaceFunction(whitespace);
+
+				// For a matching indent type, where the offset default is greater
+				if (
+					offsetType === indentType &&
+					prefix.length < indentOffset.length
+				) {
+					// Use the larger offset indent
+					return indentOffset;
+				}
+				return prefix;
+			};
+		}
+
+		/**
+		 * Offset/Indent of a node
+		 * @param {object} node - AST Node
+		 * @returns {object} offset
+		 */
+		function getOffset(node) {
+			/**
+			 * Nodes start on a line. A SQL template literal will usually be preceeded by a variable declaration.
+			 * e.g const sql = `SELECT ...`;
+			 * Or perhaps passed as definition to a function param
+			 * e.g. 'run(`SELECT ...`)'
+			 * In any case get the offset of the start of the line, whereever that maybe...
+			 */
+			const line = context.getSourceCode().lines[node.loc.start.line - 1];
+
+			// Get all the whitespace characters at the start
+			const [offset] = line.match(/^\s*/);
+
+			return offset;
+		}
+
+		/**
 		 * Validate node.
 		 * @param {object} node - Node
 		 * @returns {void}
@@ -88,6 +137,9 @@ module.exports = {
 				return;
 			}
 
+			// Get the initial indent offset
+			const offset = getOffset(node);
+
 			// Loop through each of the TemplateElements
 			node.quasis.forEach((node, index) => {
 				const text = node.value.raw;
@@ -100,7 +152,9 @@ module.exports = {
 				const replaced = text
 					.split('\n')
 					.map((line, lineIndex) =>
-						lineIndex ? line.replace(/^\s+/, replaceFunction) : line
+						lineIndex
+							? line.replace(/^\s*/, replaceIndent(offset))
+							: line
 					)
 					.join('\n');
 

@@ -7,56 +7,55 @@ RuleTester.setDefaultConfig({
 	},
 });
 
+function wrongIndentation(expected) {
+	return {
+		messageId: 'wrongIndentation',
+		data: {
+			expected,
+			actual: 'mixed tabs and spaces',
+		},
+	};
+}
+
 // Initiate RuleTester
 const ruleTester = new RuleTester();
 
 ruleTester.run('indent', rule, {
 	invalid: [
+		// Spaces to tabs
 		{
 			code:
 				'const sql = SQL`SELECT \n\t ${column} from foobar\n   \tWHERE 1`;',
 			options: ['tab'],
 			output:
 				'const sql = SQL`SELECT \n\t\t${column} from foobar\n\tWHERE 1`;',
-			errors: [
-				{
-					messageId: 'wrongIndentation',
-					data: {
-						expected: 'tab',
-						actual: 'mixed tabs and spaces',
-					},
-				},
-				{
-					messageId: 'wrongIndentation',
-					data: {
-						expected: 'tab',
-						actual: 'mixed tabs and spaces',
-					},
-				},
-			],
+			errors: [wrongIndentation('tab'), wrongIndentation('tab')],
 		},
+		// Offset Indent
+		{
+			code: '\tconst sql = SQL`SELECT \n${column} from foobar\nWHERE 1`;',
+			options: ['tab'],
+			output:
+				'\tconst sql = SQL`SELECT \n\t\t${column} from foobar\n\t\tWHERE 1`;',
+			errors: [wrongIndentation('tab'), wrongIndentation('tab')],
+		},
+
+		// Tabs to spaces
 		{
 			code:
 				'const sql = SQL`SELECT \n\t ${column} from foobar\n   \tWHERE 1`;',
 			options: [2],
 			output:
 				'const sql = SQL`SELECT \n   ${column} from foobar\n    WHERE 1`;',
-			errors: [
-				{
-					messageId: 'wrongIndentation',
-					data: {
-						expected: 'space',
-						actual: 'mixed tabs and spaces',
-					},
-				},
-				{
-					messageId: 'wrongIndentation',
-					data: {
-						expected: 'space',
-						actual: 'mixed tabs and spaces',
-					},
-				},
-			],
+			errors: [wrongIndentation('space'), wrongIndentation('space')],
+		},
+		// Offset Indent
+		{
+			code: '  const sql = SQL`SELECT \n${column} from foobar\nWHERE 1`;',
+			options: [2],
+			output:
+				'  const sql = SQL`SELECT \n    ${column} from foobar\n    WHERE 1`;',
+			errors: [wrongIndentation('space'), wrongIndentation('space')],
 		},
 	],
 	valid: [
