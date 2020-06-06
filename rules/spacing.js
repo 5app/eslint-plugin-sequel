@@ -17,9 +17,11 @@ function templateElementHandler(node) {
 
 	// Loop through lines
 	const fix = lines
-		.map((line, index) => {
+		.map((lineStr, index) => {
 			// Find spaces
 			const regexp = /(?<quote>['"]).+?\1|\s+/gi;
+
+			let line = lineStr;
 
 			// For all but the last line...
 			if (index < lines.length - 1) {

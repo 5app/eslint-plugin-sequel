@@ -3,6 +3,8 @@ const createSQLTemplateElementHandler = require('../utils/createSQLTemplateEleme
 /**
  * Template Element Handler for no-shorthand-all
  * @param {object} node - Element Node
+ * @param {object} context - Context
+ * @param {object} context.options - Options
  * @returns {object} Returns a format object or undefined
  */
 function templateElementHandler(node, {options}) {

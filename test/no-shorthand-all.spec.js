@@ -83,7 +83,8 @@ ruleTester.run('no-shorthand-all', rule, {
 	].map(mapInlineSQL),
 });
 
-function mapInlineSQL(expression) {
+function mapInlineSQL(expressionParam) {
+	let expression = expressionParam;
 	if (typeof expression === 'string') {
 		expression = {sql: expression};
 	}
