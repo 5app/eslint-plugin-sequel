@@ -9,7 +9,7 @@ function templateElementHandler(node) {
 	const text = node.value.raw;
 
 	// Special words?
-	const regexp = /((?<quote>['"]).+?\2|(?<comment>\/\*.+?\*\/)|\b(SELECT|DISTINCT|AS|INSERT|INTO|UPDATE|SET|DELETE|FROM|JOIN|LEFT|ON|WHERE|AND|OR|IS NULL|IS NOT NULL|NOT IN|IN|GROUP BY|ORDER BY|ASC|DESC|BETWEEN|\w+(?=\())\b)/gi;
+	const regexp = /((?<quote>['"]).+?\2|(?<comment>\/\*.+?\*\/)|\b(SELECT|DISTINCT|AS|INSERT|INTO|VALUES|UPDATE|SET|DELETE|FROM|JOIN|LEFT|ON|WHERE|AND|OR|IS NULL|IS NOT NULL|NOT IN|IN|GROUP BY|ORDER BY|ASC|DESC|BETWEEN|\w+(?=\())\b)/gi;
 
 	// Propose the case of the function names
 	const test = regexp.test(text);
@@ -35,15 +35,15 @@ function templateElementHandler(node) {
 	});
 
 	// Make into Array
-	const replacing = [...words];
+	const keynames = [...words];
 
 	if (fix !== text) {
 		// Wrap between expressions
 
 		return {
-			message: 'Uppercase SQL function names "{{replacing}}"',
+			messageId: 'shouldBeUpperCase',
 			data: {
-				replacing,
+				keynames,
 			},
 			fix,
 		};
@@ -62,6 +62,9 @@ module.exports = {
 		docs: {
 			description: 'Enforce SQL formatting of special words',
 			category: 'Stylistic Issues',
+		},
+		messages: {
+			shouldBeUpperCase: 'Uppercase SQL function names "{{keynames}}"',
 		},
 		fixable: 'whitespace',
 	},

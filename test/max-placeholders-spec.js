@@ -7,6 +7,13 @@ RuleTester.setDefaultConfig({
 	},
 });
 
+function exceed(data) {
+	return {
+		messageId: 'exceed',
+		data,
+	};
+}
+
 // Initiate RuleTester
 const ruleTester = new RuleTester();
 
@@ -15,11 +22,7 @@ ruleTester.run('max-placeholders', rule, {
 		{
 			code: 'const sql = `select ${column} from foobar WHERE id = ?`;',
 			options: [0],
-			errors: [
-				{
-					messageId: 'exceed',
-				},
-			],
+			errors: [exceed({count: 1, max: 0})],
 		},
 		{
 			code:
@@ -29,11 +32,7 @@ ruleTester.run('max-placeholders', rule, {
 					max: 1,
 				},
 			],
-			errors: [
-				{
-					messageId: 'exceed',
-				},
-			],
+			errors: [exceed({count: 2, max: 1})],
 		},
 	],
 	valid: [

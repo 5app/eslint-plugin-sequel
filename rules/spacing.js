@@ -17,9 +17,11 @@ function templateElementHandler(node) {
 
 	// Loop through lines
 	const fix = lines
-		.map((line, index) => {
+		.map((lineStr, index) => {
 			// Find spaces
 			const regexp = /(?<quote>['"]).+?\1|\s+/gi;
+
+			let line = lineStr;
 
 			// For all but the last line...
 			if (index < lines.length - 1) {
@@ -46,7 +48,7 @@ function templateElementHandler(node) {
 		// Wrap between expressions
 
 		return {
-			message: 'Multiple spaces',
+			messageId: 'multipleSpaces',
 			fix,
 		};
 	}
@@ -66,6 +68,9 @@ module.exports = {
 			category: 'Stylistic Issues',
 		},
 		fixable: 'whitespace',
+		messages: {
+			multipleSpaces: 'Multiple spaces',
+		},
 	},
 	create: createSQLTemplateElementHandler({templateElementHandler}),
 };

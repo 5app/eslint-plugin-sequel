@@ -8,6 +8,10 @@ module.exports = {
 			description: 'Prevent untagged SQL Template literals',
 			category: 'Possible security issue',
 		},
+		messages: {
+			unsafeInjection:
+				'Use the `sql` tagged template literal for raw queries',
+		},
 	},
 
 	/**
@@ -35,10 +39,10 @@ module.exports = {
 					.join('x');
 
 				if (isSqlQuery(literal)) {
-					context.report(
+					context.report({
 						node,
-						'Use the `sql` tagged template literal for raw queries'
-					);
+						messageId: 'unsafeInjection',
+					});
 				}
 			}
 		}
