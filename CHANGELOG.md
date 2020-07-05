@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.7.0...v1.8.0) (2020-07-05)
+
+
+### Features
+
+* **rule:** indent ([#6](https://github.com/5app/eslint-plugin-sequel/issues/6)) ([88ebe6d](https://github.com/5app/eslint-plugin-sequel/commit/88ebe6d4c6d2c9feb84531cc3bb1a0ab34c77d73))
+
 # [1.7.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.6.0...v1.7.0) (2020-04-20)
 
 
