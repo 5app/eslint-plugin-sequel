@@ -120,6 +120,58 @@ module.exports = {
 		}
 
 		/**
+		 * Get original offset
+		 * @param {object} node - AST Node
+		 * @returns {string} Original Offset string
+		 */
+		function getOriginalOffset(node) {
+			// Find the originalOffset, the lowest non-empty indent
+			const originalOffsetLength = node.quasis.reduce(
+				(originalOffsetLength, node) => {
+					const text = node.value.raw;
+
+					if (!text || node.type !== 'TemplateElement') {
+						return originalOffsetLength;
+					}
+
+					return text
+						.split('\n')
+						.reduce(
+							(originalOffsetLength, line, lineIndex, arr) => {
+								if (
+									lineIndex === 0 ||
+									((arr.length - 1 !== lineIndex ||
+										node.tail) &&
+										/^\s*$/.test(line))
+								) {
+									return originalOffsetLength;
+								}
+								const lineOffsetLength = normalizeWhitespace(
+									line.match(/^\s*/)[0]
+								).length;
+
+								if (originalOffsetLength === null) {
+									return lineOffsetLength;
+								}
+								return Math.min(
+									lineOffsetLength,
+									originalOffsetLength
+								);
+							},
+							originalOffsetLength
+						);
+				},
+				null
+			);
+
+			return originalOffsetLength
+				? (indentType === 'tab' ? '\t' : ' ').repeat(
+						originalOffsetLength
+				  )
+				: '';
+		}
+
+		/**
 		 * Validate node.
 		 * @param {object} node - Node
 		 * @returns {void}
@@ -142,7 +194,9 @@ module.exports = {
 
 			// Get the initial indent offset
 			const offset = getOffset(node);
-			let indentReplacer;
+			const originalOffset = getOriginalOffset(node);
+
+			const indentReplacer = replaceIndent(offset, originalOffset);
 
 			// Loop through each of the TemplateElements
 			node.quasis.forEach((node, index) => {
@@ -166,17 +220,6 @@ module.exports = {
 						if (lineIndex === 0) {
 							return line;
 						} else {
-
-							if (!indentReplacer) {
-								const originalOffset = normalizeWhitespace(
-									line.match(/^\s*/)[0]
-								);
-								indentReplacer = replaceIndent(
-									offset,
-									originalOffset
-								);
-							}
-
 							return line.replace(/^\s*/, indentReplacer);
 						}
 					})

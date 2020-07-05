@@ -25,10 +25,10 @@ ruleTester.run('indent', rule, {
 		// Spaces to tabs
 		{
 			code:
-				'const sql = SQL`SELECT \n\t ${column} from foobar\n   \tWHERE 1`;',
+				'const sql = SQL`SELSECT \n\t ${column} from foobar\n   \tWHERE 1`;',
 			options: ['tab'],
 			output:
-				'const sql = SQL`SELECT \n\t${column} from foobar\n\tWHERE 1`;',
+				'const sql = SQL`SELSECT \n\t\t${column} from foobar\n\tWHERE 1`;',
 			errors: [wrongIndentation('tab'), wrongIndentation('tab')],
 		},
 		// Offset Indent
@@ -52,7 +52,8 @@ ruleTester.run('indent', rule, {
 		},
 		// Offset Indent
 		{
-			code: '  const sql = SQL`SELECT \n${column} from foobar\nWHERE 1\n    `;',
+			code:
+				'  const sql = SQL`SELECT \n${column} from foobar\nWHERE 1\n    `;',
 			options: [2],
 			output:
 				'  const sql = SQL`SELECT \n    ${column} from foobar\n    WHERE 1\n  `;',
