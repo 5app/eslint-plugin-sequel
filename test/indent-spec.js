@@ -28,16 +28,16 @@ ruleTester.run('indent', rule, {
 				'const sql = SQL`SELECT \n\t ${column} from foobar\n   \tWHERE 1`;',
 			options: ['tab'],
 			output:
-				'const sql = SQL`SELECT \n\t\t${column} from foobar\n\tWHERE 1`;',
+				'const sql = SQL`SELECT \n\t${column} from foobar\n\tWHERE 1`;',
 			errors: [wrongIndentation('tab'), wrongIndentation('tab')],
 		},
 		// Offset Indent
 		{
 			code:
-				'\tconst sql = SQL`\nSELECT \n\t\t\n${column} from foobar\nWHERE 1\n\t\t`;',
+				'\tconst sql = SQL`\nSELECT \n\t\t\n${column},\n\trelativeindent from foobar\nWHERE 1\n\t\t`;',
 			options: ['tab'],
 			output:
-				'\tconst sql = SQL`\n\t\tSELECT \n\n\t\t${column} from foobar\n\t\tWHERE 1\n\t`;',
+				'\tconst sql = SQL`\n\t\tSELECT \n\n\t\t${column},\n\t\t\trelativeindent from foobar\n\t\tWHERE 1\n\t`;',
 			errors: [wrongIndentation('tab'), wrongIndentation('tab')],
 		},
 
@@ -47,13 +47,12 @@ ruleTester.run('indent', rule, {
 				'const sql = SQL`SELECT \n\t ${column} from foobar\n   \tWHERE 1`;',
 			options: [2],
 			output:
-				'const sql = SQL`SELECT \n   ${column} from foobar\n    WHERE 1`;',
+				'const sql = SQL`SELECT \n  ${column} from foobar\n   WHERE 1`;',
 			errors: [wrongIndentation('space'), wrongIndentation('space')],
 		},
 		// Offset Indent
 		{
-			code:
-				'  const sql = SQL`SELECT \n${column} from foobar\nWHERE 1\n    `;',
+			code: '  const sql = SQL`SELECT \n${column} from foobar\nWHERE 1\n    `;',
 			options: [2],
 			output:
 				'  const sql = SQL`SELECT \n    ${column} from foobar\n    WHERE 1\n  `;',

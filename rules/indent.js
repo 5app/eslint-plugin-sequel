@@ -49,49 +49,52 @@ module.exports = {
 			indentSize = option;
 		}
 
-		let replaceFunction;
+		let normalizeWhitespace;
 
 		if (option === 'tab') {
 			// We only want tabs
 			indentType = 'tab';
 
 			// Replace space before tabs
-			replaceFunction = (m) =>
+			normalizeWhitespace = (m) =>
 				m.replace(/( {4})|( {1,3}\t)|( {1,3})/g, '\t');
 		} else {
 			// Regexp
 			const spaceReg = new RegExp(`( {0,${indentSize - 1}})\t`, 'g');
 
 			// Replace tabs with spaces
-			replaceFunction = (m) =>
+			normalizeWhitespace = (m) =>
 				m.replace(spaceReg, ' '.repeat(indentSize));
 		}
+
+		// Set the indent, 1 tab or n spaces
+		const indent = indentType === 'tab' ? '\t' : ' '.repeat(indentSize);
 
 		/**
 		 * Replace Indent
 		 * @param {object} offset - Offset from which everything should start
+		 * @param {object} originalOffset - Offset of the first non-whitespace entry from which everything should start
 		 * @returns {Function} Replace function
 		 */
-		function replaceIndent(offset) {
-			const offsetType = offset[0] === '\t' ? 'tab' : 'space';
-
-			const indent = offsetType === 'tab' ? '\t' : ' '.repeat(indentSize);
-
+		function replaceIndent(offset, originalOffset) {
+			// Base indent, nothing can be less than this
 			const indentOffset = offset + indent;
 
 			return (whitespace) => {
 				// Formatted whitespace prefix
-				const prefix = replaceFunction(whitespace);
+				const prefix = normalizeWhitespace(whitespace);
 
-				// For a matching indent type, where the offset default is greater
-				if (
-					offsetType === indentType &&
-					prefix.length < indentOffset.length
-				) {
-					// Use the larger offset indent
-					return indentOffset;
+				// What's the difference between the original offset
+				const diffLength = prefix.length - originalOffset.length;
+
+				if (diffLength > 0) {
+					return (
+						indentOffset +
+						(indentType === 'tab' ? '\t' : ' ').repeat(diffLength)
+					);
 				}
-				return prefix;
+
+				return indentOffset;
 			};
 		}
 
@@ -113,7 +116,7 @@ module.exports = {
 			// Get all the whitespace characters at the start
 			const [offset] = line.match(/^\s*/);
 
-			return replaceFunction(offset);
+			return normalizeWhitespace(offset);
 		}
 
 		/**
@@ -139,7 +142,7 @@ module.exports = {
 
 			// Get the initial indent offset
 			const offset = getOffset(node);
-			const indentReplacer = replaceIndent(offset);
+			let indentReplacer;
 
 			// Loop through each of the TemplateElements
 			node.quasis.forEach((node, index) => {
@@ -163,6 +166,17 @@ module.exports = {
 						if (lineIndex === 0) {
 							return line;
 						} else {
+
+							if (!indentReplacer) {
+								const originalOffset = normalizeWhitespace(
+									line.match(/^\s*/)[0]
+								);
+								indentReplacer = replaceIndent(
+									offset,
+									originalOffset
+								);
+							}
+
 							return line.replace(/^\s*/, indentReplacer);
 						}
 					})
