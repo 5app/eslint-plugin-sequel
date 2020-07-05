@@ -40,6 +40,8 @@ Then configure the rules you want to use under the rules section.
 ## Supported Rules
 
 -   `sequel/function-case`: Makes SQL function names uppercase, e.g. 'SELECT' **fixable**
+-   `sequel/indent`: Enforces indentation **fixable**
+    -   `'tab'|Number`: Defines the characters to use, where Number is given it uses spaces.
 -   `sequel/max-placeholders`: Placeholders, `?` character, can be hard to read if there are many in the same SQL string.
     -   `max`: Maximum number of placeholders allowed (default `3`)
 -   `sequel/no-shorthand-all`: Avoid using the ambiguous shorthand all '\*'.
