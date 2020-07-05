@@ -33,10 +33,11 @@ ruleTester.run('indent', rule, {
 		},
 		// Offset Indent
 		{
-			code: '\tconst sql = SQL`SELECT \n${column} from foobar\nWHERE 1`;',
+			code:
+				'\tconst sql = SQL`\nSELECT \n\t\t\n${column} from foobar\nWHERE 1\n\t\t`;',
 			options: ['tab'],
 			output:
-				'\tconst sql = SQL`SELECT \n\t\t${column} from foobar\n\t\tWHERE 1`;',
+				'\tconst sql = SQL`\n\t\tSELECT \n\n\t\t${column} from foobar\n\t\tWHERE 1\n\t`;',
 			errors: [wrongIndentation('tab'), wrongIndentation('tab')],
 		},
 
@@ -51,10 +52,11 @@ ruleTester.run('indent', rule, {
 		},
 		// Offset Indent
 		{
-			code: '  const sql = SQL`SELECT \n${column} from foobar\nWHERE 1`;',
+			code:
+				'  const sql = SQL`SELECT \n${column} from foobar\nWHERE 1\n    `;',
 			options: [2],
 			output:
-				'  const sql = SQL`SELECT \n    ${column} from foobar\n    WHERE 1`;',
+				'  const sql = SQL`SELECT \n    ${column} from foobar\n    WHERE 1\n  `;',
 			errors: [wrongIndentation('space'), wrongIndentation('space')],
 		},
 	],

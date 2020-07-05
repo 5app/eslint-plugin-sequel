@@ -113,7 +113,7 @@ module.exports = {
 			// Get all the whitespace characters at the start
 			const [offset] = line.match(/^\s*/);
 
-			return offset;
+			return replaceFunction(offset);
 		}
 
 		/**
@@ -139,6 +139,7 @@ module.exports = {
 
 			// Get the initial indent offset
 			const offset = getOffset(node);
+			const indentReplacer = replaceIndent(offset);
 
 			// Loop through each of the TemplateElements
 			node.quasis.forEach((node, index) => {
@@ -151,11 +152,20 @@ module.exports = {
 				// Catch any inconsistant indentations
 				const replaced = text
 					.split('\n')
-					.map((line, lineIndex) =>
-						lineIndex
-							? line.replace(/^\s*/, replaceIndent(offset))
-							: line
-					)
+					.map((line, lineIndex, arr) => {
+						if (/^\s*$/.test(line)) {
+							if (node.tail && arr.length - 1 === lineIndex) {
+								return offset;
+							} else if (lineIndex < arr.length - 1) {
+								return '';
+							}
+						}
+						if (lineIndex === 0) {
+							return line;
+						} else {
+							return line.replace(/^\s*/, indentReplacer);
+						}
+					})
 					.join('\n');
 
 				if (text !== replaced) {
