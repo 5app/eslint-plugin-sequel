@@ -1,12 +1,11 @@
 # `eslint-plugin-sequel`
 
-Eslint rules for inline SQL
+ESLint rules for inline SQL within Template Literals.
 
 [![Coverage Status](https://coveralls.io/repos/github/5app/eslint-plugin-sequel/badge.svg)](https://coveralls.io/github/eslint-plugin-sequel/dare)
 [![CircleCI](https://circleci.com/gh/5app/eslint-plugin-sequel.svg?style=shield)](https://circleci.com/gh/5app/eslint-plugin-sequel)
 [![NPM Version](https://img.shields.io/npm/v/eslint-plugin-sequel.svg)](https://www.npmjs.com/package/eslint-plugin-sequel)
 [![Known Vulnerabilities](https://snyk.io/test/github/5app/eslint-plugin-sequel/badge.svg)](https://snyk.io/test/github/5app/eslint-plugin-sequel)
-
 
 ## Installation
 
@@ -32,6 +31,7 @@ Then configure the rules you want to use under the rules section.
 {
 	"rules": {
 		"sequel/function-case": 2,
+		"sequel/indent": [2, "tab"],
 		"sequel/max-placeholders": [2, {"max": 3}],
 		"sequel/no-shorthand-all": [
 			2,
@@ -43,11 +43,11 @@ Then configure the rules you want to use under the rules section.
 }
 ```
 
-## Supported Rules
+## Rules
 
 -   `sequel/function-case`: Makes SQL function names uppercase, e.g. 'SELECT' **fixable**
 -   `sequel/indent`: Enforces indentation **fixable**
-    -   `'tab'|Number`: Defines the characters to use, where Number is given it uses spaces.
+    -   `'tab'|Number`: Defines the characters to use, where Number is given it uses spaces (default `2`).
 -   `sequel/max-placeholders`: Placeholders, `?` character, can be hard to read if there are many in the same SQL string.
     -   `max`: Maximum number of placeholders allowed (default `3`)
 -   `sequel/no-shorthand-all`: Avoid using the ambiguous shorthand all '\*'.
