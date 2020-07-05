@@ -1,6 +1,9 @@
 const isSqlQuery = require('../utils/sqlParser.js');
 const isTagged = require('../utils/isTagged.js');
 
+const SPACE = ' ';
+const TAB = '\t';
+
 /**
  * Indent
  * Set the indentation used in SQL
@@ -42,33 +45,29 @@ module.exports = {
 		// Get the maximum option...
 		const [option] = context.options;
 
-		let indentType = 'space';
-		let indentSize = 4;
+		const indentType = option === 'tab' ? 'tab' : 'space';
+		const indentSize = typeof option === 'number' ? option : 4;
 
-		if (typeof option === 'number') {
-			indentSize = option;
-		}
+		// Set the indent, 1 tab or n spaces
+		const indent = indentType === 'tab' ? TAB : SPACE.repeat(indentSize);
+
+		const indentChar = indentType === 'tab' ? TAB : SPACE;
 
 		let normalizeWhitespace;
 
 		if (option === 'tab') {
-			// We only want tabs
-			indentType = 'tab';
-
 			// Replace space before tabs
 			normalizeWhitespace = (m) =>
-				m.replace(/( {4})|( {1,3}\t)|( {1,3})/g, '\t');
+				m.replace(/( {4})|( {1,3}\t)|( {1,3})/g, TAB);
 		} else {
 			// Regexp
-			const spaceReg = new RegExp(`( {0,${indentSize - 1}})\t`, 'g');
-
+			const spaceReg = new RegExp(
+				`( {${indentSize}})|( {0,${indentSize - 1}})\t|( {1,3})`,
+				'g'
+			);
 			// Replace tabs with spaces
-			normalizeWhitespace = (m) =>
-				m.replace(spaceReg, ' '.repeat(indentSize));
+			normalizeWhitespace = (m) => m.replace(spaceReg, indent);
 		}
-
-		// Set the indent, 1 tab or n spaces
-		const indent = indentType === 'tab' ? '\t' : ' '.repeat(indentSize);
 
 		/**
 		 * Replace Indent
@@ -88,10 +87,7 @@ module.exports = {
 				const diffLength = prefix.length - originalOffset.length;
 
 				if (diffLength > 0) {
-					return (
-						indentOffset +
-						(indentType === 'tab' ? '\t' : ' ').repeat(diffLength)
-					);
+					return indentOffset + indentChar.repeat(diffLength);
 				}
 
 				return indentOffset;
@@ -146,8 +142,9 @@ module.exports = {
 								) {
 									return originalOffsetLength;
 								}
+								const lineIndent = line.match(/^\s*/)[0];
 								const lineOffsetLength = normalizeWhitespace(
-									line.match(/^\s*/)[0]
+									lineIndent
 								).length;
 
 								if (originalOffsetLength === null) {
@@ -165,9 +162,7 @@ module.exports = {
 			);
 
 			return originalOffsetLength
-				? (indentType === 'tab' ? '\t' : ' ').repeat(
-						originalOffsetLength
-				  )
+				? indentChar.repeat(originalOffsetLength)
 				: '';
 		}
 
