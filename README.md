@@ -2,7 +2,7 @@
 
 ESLint rules for inline SQL within Template Literals.
 
-[![Coverage Status](https://coveralls.io/repos/github/5app/eslint-plugin-sequel/badge.svg)](https://coveralls.io/github/eslint-plugin-sequel/dare)
+[![Coverage Status](https://coveralls.io/repos/github/5app/eslint-plugin-sequel/badge.svg)](https://coveralls.io/github/5app/eslint-plugin-sequel)
 [![CircleCI](https://circleci.com/gh/5app/eslint-plugin-sequel.svg?style=shield)](https://circleci.com/gh/5app/eslint-plugin-sequel)
 [![NPM Version](https://img.shields.io/npm/v/eslint-plugin-sequel.svg)](https://www.npmjs.com/package/eslint-plugin-sequel)
 [![Known Vulnerabilities](https://snyk.io/test/github/5app/eslint-plugin-sequel/badge.svg)](https://snyk.io/test/github/5app/eslint-plugin-sequel)
