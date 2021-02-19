@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.8.0...v1.9.0) (2021-02-19)
+
+
+### Features
+
+* **rule:** no-eol-command ([b2d31af](https://github.com/5app/eslint-plugin-sequel/commit/b2d31afe495c998305b50c95092e2001a091ad2b))
+
 # [1.8.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.7.0...v1.8.0) (2020-07-05)
 
 
