@@ -1,3 +1,10 @@
+## [1.9.2](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.1...v1.9.2) (2021-02-19)
+
+
+### Bug Fixes
+
+* **no-eol-command:** fix order ([b644104](https://github.com/5app/eslint-plugin-sequel/commit/b644104f108594c7cbe0258ac1da2d8254e48c97))
+
 ## [1.9.1](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.0...v1.9.1) (2021-02-19)
 
 
