@@ -25,13 +25,14 @@ ruleTester.run('no-eol-command', rule, {
 			code:
 				'const sql = SQL`SELECT\n\n\n ${column} FROM \n\n\n foobar \nORDER BY name DESC`;',
 			output:
-				'const sql = SQL`SELECT  ${column} FROM  foobar \nORDER BY name DESC`;',
+				'const sql = SQL`\n\n\n SELECT ${column}  \n\n\n FROM foobar \nORDER BY name DESC`;',
 			errors: [eolErr('SELECT'), eolErr('FROM')],
 		},
 		{
 			code:
 				'const sql = SQL`SELECT DISTINCT\n\n\n ${column} FROM \n\n\n foobar`;',
-			output: 'const sql = SQL`SELECT DISTINCT  ${column} FROM  foobar`;',
+			output:
+				'const sql = SQL`\n\n\n SELECT DISTINCT ${column}  \n\n\n FROM foobar`;',
 			errors: [eolErr('SELECT DISTINCT'), eolErr('FROM')],
 		},
 		{
@@ -43,7 +44,7 @@ ruleTester.run('no-eol-command', rule, {
 				},
 			],
 			output:
-				'const sql = SQL`SELECT DISTINCT\n\n\n ${column} FROM  foobar\n LEFT JOIN\n anothertable`;',
+				'const sql = SQL`SELECT DISTINCT\n\n\n ${column}  \n\n\n FROM foobar\n LEFT JOIN\n anothertable`;',
 			errors: [eolErr('FROM')],
 		},
 	],

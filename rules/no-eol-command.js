@@ -15,7 +15,7 @@ function templateElementHandler(node, context) {
 
 	// Regexp
 	// SQL Commands, these should not appear at the end of a line
-	const regexp = /((?<ownline>\n)\s*)?\b(?<command>SELECT|(SELECT\s+)?DISTINCT|AS|INSERT|(INSERT\s+)?INTO|VALUES|UPDATE|SET|DELETE|(DELETE\s*)?FROM|((LEFT|RIGHT)\s+)?JOIN|ON|WHERE|AND|OR|NOT IN|IN|GROUP BY|ORDER BY|BETWEEN)(\s*\n)+/gi;
+	const regexp = /((?<ownline>\n)\s*)?\b(?<command>SELECT|(SELECT\s+)?DISTINCT|AS|INSERT|(INSERT\s+)?INTO|VALUES|UPDATE|SET|DELETE|(DELETE\s*)?FROM|((LEFT|RIGHT)\s+)?JOIN|ON|WHERE|AND|OR|NOT IN|IN|GROUP BY|ORDER BY|BETWEEN)(?<suffix>(\s*\n)+\s*)/gi;
 
 	// Propose the case of the function names
 	const test = regexp.test(text);
@@ -30,7 +30,7 @@ function templateElementHandler(node, context) {
 		// Get the named capture groups last paramater
 		const [index, , groups] = params.slice(-3);
 
-		const {command, ownline} = groups;
+		const {command, ownline, suffix} = groups;
 
 		// This is ok....
 		if ((ownline || index === 0) && allowOnOwnLine) {
@@ -39,7 +39,7 @@ function templateElementHandler(node, context) {
 
 		commands.add(command);
 
-		return `${command} `;
+		return `${suffix}${command} `;
 	});
 
 	if (fix !== text) {
