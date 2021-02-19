@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.0...v1.9.1) (2021-02-19)
+
+
+### Bug Fixes
+
+* **no-eol-command:** ignore DISTINCT, ASC... etc ([bfadc22](https://github.com/5app/eslint-plugin-sequel/commit/bfadc229d852a9ffa1315a047d5db19afb5a90e2))
+
 # [1.9.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.8.0...v1.9.0) (2021-02-19)
 
 
