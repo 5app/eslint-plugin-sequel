@@ -15,7 +15,7 @@ function templateElementHandler(node, context) {
 
 	// Regexp
 	// SQL Commands, these should not appear at the end of a line
-	const regexp = /((?<ownline>\n)\s*)?\b(?<command>SELECT|DISTINCT|AS|INSERT|INTO|VALUES|UPDATE|SET|DELETE|FROM|JOIN|LEFT|ON|WHERE|AND|OR|NOT IN|IN|GROUP BY|ORDER BY|ASC|DESC|BETWEEN)(\s*\n)+/gi;
+	const regexp = /((?<ownline>\n)\s*)?\b(?<command>SELECT|(SELECT\s+)?DISTINCT|AS|INSERT|(INSERT\s+)?INTO|VALUES|UPDATE|SET|DELETE|(DELETE\s*)?FROM|((LEFT|RIGHT)\s+)?JOIN|ON|WHERE|AND|OR|NOT IN|IN|GROUP BY|ORDER BY|BETWEEN)(\s*\n)+/gi;
 
 	// Propose the case of the function names
 	const test = regexp.test(text);
