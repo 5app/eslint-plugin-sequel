@@ -33,6 +33,7 @@ Then configure the rules you want to use under the rules section.
 		"sequel/function-case": 2,
 		"sequel/indent": [2, "tab"],
 		"sequel/max-placeholders": [2, {"max": 3}],
+		"sequel/no-eol-command": [2, {"allowOnOwnLine": true}],
 		"sequel/no-shorthand-all": [
 			2,
 			{"allowQualified": true, "allowCountAll": true}
@@ -50,6 +51,8 @@ Then configure the rules you want to use under the rules section.
     -   `'tab'|Number`: Defines the characters to use, where Number is given it uses spaces (default `2`).
 -   `sequel/max-placeholders`: Placeholders, `?` character, can be hard to read if there are many in the same SQL string.
     -   `max`: Maximum number of placeholders allowed (default `3`)
+-   `sequel/no-eol-command`: Avoid ending lines with a SQL command which is always followed by a value.
+    -   `allowOnOwnLine`: Permits the command to appear if it is not preceeded by anything, allowing commands to be easily read.
 -   `sequel/no-shorthand-all`: Avoid using the ambiguous shorthand all '\*'.
     -   `allowQualified` (Boolean, default: `false`): Permits qualified shorthand all e.g. `table.*` to get everything from a table.
     -   `allowCountAll` (Boolean, default: `false`): Permits within `COUNT()` e.g. `COUNT(*)`.
