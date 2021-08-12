@@ -22,36 +22,29 @@ const ruleTester = new RuleTester();
 ruleTester.run('no-eol-command', rule, {
 	invalid: [
 		{
-			code:
-				'const sql = SQL`SELECT\n\n\n ${column} FROM \n\n\n foobar \nORDER BY name DESC`;',
-			output:
-				'const sql = SQL`\n\n\n SELECT ${column}  \n\n\n FROM foobar \nORDER BY name DESC`;',
+			code: 'const sql = SQL`SELECT\n\n\n ${column} FROM \n\n\n foobar \nORDER BY name DESC`;',
+			output: 'const sql = SQL`\n\n\n SELECT ${column}  \n\n\n FROM foobar \nORDER BY name DESC`;',
 			errors: [eolErr('SELECT'), eolErr('FROM')],
 		},
 		{
-			code:
-				'const sql = SQL`SELECT DISTINCT\n\n\n ${column} FROM \n\n\n foobar`;',
-			output:
-				'const sql = SQL`\n\n\n SELECT DISTINCT ${column}  \n\n\n FROM foobar`;',
+			code: 'const sql = SQL`SELECT DISTINCT\n\n\n ${column} FROM \n\n\n foobar`;',
+			output: 'const sql = SQL`\n\n\n SELECT DISTINCT ${column}  \n\n\n FROM foobar`;',
 			errors: [eolErr('SELECT DISTINCT'), eolErr('FROM')],
 		},
 		{
-			code:
-				'const sql = SQL`SELECT DISTINCT\n\n\n ${column} FROM \n\n\n foobar\n LEFT JOIN\n anothertable`;',
+			code: 'const sql = SQL`SELECT DISTINCT\n\n\n ${column} FROM \n\n\n foobar\n LEFT JOIN\n anothertable`;',
 			options: [
 				{
 					allowOnOwnLine: true,
 				},
 			],
-			output:
-				'const sql = SQL`SELECT DISTINCT\n\n\n ${column}  \n\n\n FROM foobar\n LEFT JOIN\n anothertable`;',
+			output: 'const sql = SQL`SELECT DISTINCT\n\n\n ${column}  \n\n\n FROM foobar\n LEFT JOIN\n anothertable`;',
 			errors: [eolErr('FROM')],
 		},
 	],
 	valid: [
 		{
-			code:
-				'const sql = SQL`SELECT\n\n\n ${column}\n FROM \n\n\n foobar`;',
+			code: 'const sql = SQL`SELECT\n\n\n ${column}\n FROM \n\n\n foobar`;',
 			options: [
 				{
 					allowOnOwnLine: true,

@@ -51,17 +51,13 @@ ruleTester.run('function-case', rule, {
 			errors: [errorUpper('Delete')],
 		},
 		{
-			code:
-				'const sql = SQL`SELECT max(id) AS latest FROM foobar WHERE ${column} group by id`',
-			output:
-				'const sql = SQL`SELECT MAX(id) AS latest FROM foobar WHERE ${column} GROUP BY id`',
+			code: 'const sql = SQL`SELECT max(id) AS latest FROM foobar WHERE ${column} group by id`',
+			output: 'const sql = SQL`SELECT MAX(id) AS latest FROM foobar WHERE ${column} GROUP BY id`',
 			errors: [errorUpper('max'), errorUpper('group by')],
 		},
 		{
-			code:
-				'const join = boolean || SQL`\njoin foobar f on (a.id = f.id)`',
-			output:
-				'const join = boolean || SQL`\nJOIN foobar f ON (a.id = f.id)`',
+			code: 'const join = boolean || SQL`\njoin foobar f on (a.id = f.id)`',
+			output: 'const join = boolean || SQL`\nJOIN foobar f ON (a.id = f.id)`',
 			errors: [errorUpper('join,on')],
 		},
 	],

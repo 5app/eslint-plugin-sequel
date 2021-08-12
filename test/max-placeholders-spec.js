@@ -25,8 +25,7 @@ ruleTester.run('max-placeholders', rule, {
 			errors: [exceed({count: 1, max: 0})],
 		},
 		{
-			code:
-				'const sql = SQL`select ${column} from foobar WHERE id = ? AND name = ?`;',
+			code: 'const sql = SQL`select ${column} from foobar WHERE id = ? AND name = ?`;',
 			options: [
 				{
 					max: 1,

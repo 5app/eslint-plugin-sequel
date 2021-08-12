@@ -143,9 +143,8 @@ module.exports = {
 									return originalOffsetLength;
 								}
 								const lineIndent = line.match(/^\s*/)[0];
-								const lineOffsetLength = normalizeWhitespace(
-									lineIndent
-								).length;
+								const lineOffsetLength =
+									normalizeWhitespace(lineIndent).length;
 
 								if (originalOffsetLength === null) {
 									return lineOffsetLength;
