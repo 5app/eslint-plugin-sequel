@@ -1,3 +1,10 @@
+## [1.9.3](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.2...v1.9.3) (2021-08-12)
+
+
+### Bug Fixes
+
+* **deps:** update dev dependencies ([6a5e92d](https://github.com/5app/eslint-plugin-sequel/commit/6a5e92d0ad59326936cb4b0cdc058897d5f54216))
+
 ## [1.9.2](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.1...v1.9.2) (2021-02-19)
 
 
