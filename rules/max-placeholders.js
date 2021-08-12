@@ -44,8 +44,7 @@ module.exports = {
 			},
 		],
 		messages: {
-			exceed:
-				'SQL statement has too many placeholders `?` appears ({{count}}). Maximum allowed is {{max}}.',
+			exceed: 'SQL statement has too many placeholders `?` appears ({{count}}). Maximum allowed is {{max}}.',
 		},
 	},
 

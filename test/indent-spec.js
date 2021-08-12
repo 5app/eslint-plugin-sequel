@@ -24,39 +24,31 @@ ruleTester.run('indent', rule, {
 	invalid: [
 		// Spaces to tabs
 		{
-			code:
-				'const sql1 = SQL`SELECT \n\t ${column} from foobar\n   \tWHERE 1`;',
+			code: 'const sql1 = SQL`SELECT \n\t ${column} from foobar\n   \tWHERE 1`;',
 			options: ['tab'],
-			output:
-				'const sql1 = SQL`SELECT \n\t\t${column} from foobar\n\tWHERE 1`;',
+			output: 'const sql1 = SQL`SELECT \n\t\t${column} from foobar\n\tWHERE 1`;',
 			errors: [wrongIndentation('tab'), wrongIndentation('tab')],
 		},
 		// Offset Indent
 		{
-			code:
-				'\tconst sql2 = SQL`\nSELECT \n\t\t\n${column},\n\trelativeindent from foobar\nWHERE 1\n\t\t`;',
+			code: '\tconst sql2 = SQL`\nSELECT \n\t\t\n${column},\n\trelativeindent from foobar\nWHERE 1\n\t\t`;',
 			options: ['tab'],
-			output:
-				'\tconst sql2 = SQL`\n\t\tSELECT \n\n\t\t${column},\n\t\t\trelativeindent from foobar\n\t\tWHERE 1\n\t`;',
+			output: '\tconst sql2 = SQL`\n\t\tSELECT \n\n\t\t${column},\n\t\t\trelativeindent from foobar\n\t\tWHERE 1\n\t`;',
 			errors: [wrongIndentation('tab'), wrongIndentation('tab')],
 		},
 
 		// Tabs to spaces
 		{
-			code:
-				'const sql3 = SQL`SELECT \n\t ${column} from foobar\n   \tWHERE 1`;',
+			code: 'const sql3 = SQL`SELECT \n\t ${column} from foobar\n   \tWHERE 1`;',
 			options: [2],
-			output:
-				'const sql3 = SQL`SELECT \n  ${column} from foobar\n  WHERE 1`;',
+			output: 'const sql3 = SQL`SELECT \n  ${column} from foobar\n  WHERE 1`;',
 			errors: [wrongIndentation('space'), wrongIndentation('space')],
 		},
 		// Offset Indent
 		{
-			code:
-				'  const sql4 = SQL`SELECT \n${column} from foobar\nWHERE 1\n    `;',
+			code: '  const sql4 = SQL`SELECT \n${column} from foobar\nWHERE 1\n    `;',
 			options: [2],
-			output:
-				'  const sql4 = SQL`SELECT \n    ${column} from foobar\n    WHERE 1\n  `;',
+			output: '  const sql4 = SQL`SELECT \n    ${column} from foobar\n    WHERE 1\n  `;',
 			errors: [wrongIndentation('space'), wrongIndentation('space')],
 		},
 	],
