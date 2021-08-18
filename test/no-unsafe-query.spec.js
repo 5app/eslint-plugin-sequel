@@ -21,7 +21,7 @@ ruleTester.run('no-unsafe-query', rule, {
 		'INSERT foobar (${column}) SELECT ',
 		'UPDATE foobar SET ${column}',
 		'DELETE FROM foobar WHERE ${column}',
-		'DELETE f FROM foobar f WHERE ${column}',
+		'DELETE foo   FROM foobar foo WHERE ${column}',
 	].reduce(
 		(arr, expression) => [
 			...arr,
