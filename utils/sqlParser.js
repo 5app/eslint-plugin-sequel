@@ -20,7 +20,7 @@ module.exports = (str) => {
 			str
 		);
 	if (bool) {
-		return /\s+VALUES?\s+/i.test(str);
+		return /\s+(VALUES?|SELECT)\s+/i.test(str);
 	}
 
 	/**

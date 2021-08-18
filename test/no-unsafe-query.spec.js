@@ -18,6 +18,7 @@ ruleTester.run('no-unsafe-query', rule, {
 	invalid: [
 		'SELECT ${column} FROM foobar',
 		'INSERT INTO foobar (${column}) VALUES ',
+		'INSERT INTO foobar (${column}) SELECT ',
 		'UPDATE foobar SET ${column}',
 		'DELETE FROM foobar WHERE ${column}',
 	].reduce(
