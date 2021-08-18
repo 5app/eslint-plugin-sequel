@@ -1,3 +1,10 @@
+## [1.9.4](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.3...v1.9.4) (2021-08-18)
+
+
+### Bug Fixes
+
+* **sqlparser:** include INSERT...SELECT ([2776e70](https://github.com/5app/eslint-plugin-sequel/commit/2776e70de0fc06b6951591caba0bd5caa33a80be))
+
 ## [1.9.3](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.2...v1.9.3) (2021-08-12)
 
 
