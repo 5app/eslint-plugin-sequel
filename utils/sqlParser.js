@@ -16,7 +16,7 @@ module.exports = (str) => {
 	 * Is this a INSERT
 	 */
 	bool =
-		/^\s*INSERT\s+((LOW_PRIORITY|DELAYED|HIGH_PRIORITY)\s+)?(IGNORE\s+)?INTO\s+/i.test(
+		/^\s*INSERT\s+((LOW_PRIORITY|DELAYED|HIGH_PRIORITY)\s+)?(IGNORE\s+)?(INTO\s+)?([\w$-]+)\s\(/i.test(
 			str
 		);
 	if (bool) {
