@@ -1,3 +1,10 @@
+## [1.9.7](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.6...v1.9.7) (2021-08-18)
+
+
+### Bug Fixes
+
+* **parser:** include delete with alias ([44be945](https://github.com/5app/eslint-plugin-sequel/commit/44be945fe78ed2ae0c4546b8f0e522d79bc3f4c1))
+
 ## [1.9.6](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.5...v1.9.6) (2021-08-18)
 
 
