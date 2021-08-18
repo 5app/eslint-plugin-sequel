@@ -18,7 +18,7 @@ ruleTester.run('no-unsafe-query', rule, {
 	invalid: [
 		'SELECT ${column} FROM foobar',
 		'INSERT INTO foobar (${column}) VALUES ',
-		'INSERT INTO foobar (${column}) SELECT ',
+		'INSERT foobar (${column}) SELECT ',
 		'UPDATE foobar SET ${column}',
 		'DELETE FROM foobar WHERE ${column}',
 	].reduce(
@@ -50,6 +50,7 @@ ruleTester.run('no-unsafe-query', rule, {
 		'let query;',
 		'const query = `SELECT column FROM foobar`; foo.query(query);',
 		'const foo = "bar"; baz.greet(`hello ${foo}`);',
+		'const foo = "bar"; baz.greet(`insert into somehing select ${foo}${foo}${foo}`);',
 		'const foo = "bar"; const baz = `hello ${foo}`; qux.greet(baz);',
 		'foo.greet(`hello`);',
 		'foo.greet(`Select `);',
