@@ -34,7 +34,7 @@ module.exports = (str) => {
 	/**
 	 * Is this a DELETE?
 	 */
-	bool = /^\s*DELETE\s+FROM\s+/i.test(str);
+	bool = /^\s*DELETE\s+(\w\s)?FROM\s+/i.test(str);
 
 	return bool;
 };
