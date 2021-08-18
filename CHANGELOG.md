@@ -1,3 +1,10 @@
+## [1.9.5](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.4...v1.9.5) (2021-08-18)
+
+
+### Bug Fixes
+
+* **sqlparser:** include INSERT tble, without INTO ([1e10703](https://github.com/5app/eslint-plugin-sequel/commit/1e10703f2a87a46c55d4d567291c9f77e645cd4f))
+
 ## [1.9.4](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.3...v1.9.4) (2021-08-18)
 
 
