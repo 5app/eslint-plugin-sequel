@@ -1,3 +1,10 @@
+## [1.9.8](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.7...v1.9.8) (2021-09-03)
+
+
+### Bug Fixes
+
+* **ci:** update ci cimg, noissue ([#47](https://github.com/5app/eslint-plugin-sequel/issues/47)) ([d8c8688](https://github.com/5app/eslint-plugin-sequel/commit/d8c868855a325ac93f7258eb36e26db3dd75e737))
+
 ## [1.9.7](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.6...v1.9.7) (2021-08-18)
 
 ### Bug Fixes
