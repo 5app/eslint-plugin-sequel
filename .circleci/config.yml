@@ -1,45 +1,52 @@
-aliases:
-    - &dir ~/repo
-    - &defaults
-      working_directory: *dir
-      docker:
-          - image: circleci/node:lts
-    - &cache_key
-      key: dependency-cache-{{ checksum "package.json" }}
-    - &attach_workspace
-      attach_workspace:
-          at: *dir
+version: 2.1
 
-version: 2
+aliases:
+    - &cache-key dependency-cache-{{ checksum "package.json" }}
+    - &cache-key-fallback dependency-cache-
+
+executors:
+    default:
+        working_directory: ~/repo
+        docker:
+            - image: cimg/node:lts
+
 jobs:
     checkout_code:
-        <<: *defaults
+        executor: default
         steps:
             - checkout
-            - restore_cache:
-                  <<: *cache_key
-            - run: npm install
-            - save_cache:
-                  <<: *cache_key
-                  paths:
-                      - ./node_modules
             - persist_to_workspace:
-                  root: *dir
+                  root: ~/repo
                   paths:
                       - .
-
     test:
-        <<: *defaults
+        executor: default
         steps:
-            - *attach_workspace
+            - attach_workspace:
+                  at: ~/repo
+            - restore_cache:
+                  keys:
+                      - *cache-key
+                      - *cache-key-fallback
+            - run: npm install
+            - run: npm rebuild
+            - save_cache:
+                  key: *cache-key
+                  paths:
+                      - ./node_modules
             - run: npm run lint
             - run: npm test
+            - persist_to_workspace:
+                  root: ~/repo
+                  paths:
+                      - node_modules
 
     release:
-        <<: *defaults
+        executor: default
         steps:
-            - *attach_workspace
-            # - checkout # Commenting this line out as I don't think it is needed, please uncomment if the release fails
+            - attach_workspace:
+                  at: ~/repo
+            - checkout
             - run: npm run semantic-release
 
 workflows:
@@ -54,7 +61,3 @@ workflows:
                   context: org-global
                   requires:
                       - test
-                  filters:
-                      branches:
-                          only:
-                              - main
