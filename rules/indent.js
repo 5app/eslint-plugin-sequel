@@ -130,32 +130,30 @@ module.exports = {
 						return originalOffsetLength;
 					}
 
-					return text
-						.split('\n')
-						.reduce(
-							(originalOffsetLength, line, lineIndex, arr) => {
-								if (
-									lineIndex === 0 ||
-									((arr.length - 1 !== lineIndex ||
-										node.tail) &&
-										/^\s*$/.test(line))
-								) {
-									return originalOffsetLength;
-								}
-								const lineIndent = line.match(/^\s*/)[0];
-								const lineOffsetLength =
-									normalizeWhitespace(lineIndent).length;
+					return text.split('\n').reduce(
+						// eslint-disable-next-line max-params
+						(originalOffsetLength, line, lineIndex, arr) => {
+							if (
+								lineIndex === 0 ||
+								((arr.length - 1 !== lineIndex || node.tail) &&
+									/^\s*$/.test(line))
+							) {
+								return originalOffsetLength;
+							}
+							const lineIndent = line.match(/^\s*/)[0];
+							const lineOffsetLength =
+								normalizeWhitespace(lineIndent).length;
 
-								if (originalOffsetLength === null) {
-									return lineOffsetLength;
-								}
-								return Math.min(
-									lineOffsetLength,
-									originalOffsetLength
-								);
-							},
-							originalOffsetLength
-						);
+							if (originalOffsetLength === null) {
+								return lineOffsetLength;
+							}
+							return Math.min(
+								lineOffsetLength,
+								originalOffsetLength
+							);
+						},
+						originalOffsetLength
+					);
 				},
 				null
 			);

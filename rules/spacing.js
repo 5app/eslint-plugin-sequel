@@ -29,6 +29,7 @@ function templateElementHandler(node) {
 				line = line.trimEnd();
 			}
 
+			// eslint-disable-next-line max-params
 			return line.replace(regexp, (m, _, regIndex, original, groups) => {
 				// Get the named capture groups last paramater
 				const {quote} = groups;
