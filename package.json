@@ -20,7 +20,6 @@
 		"lint-fix": "npm run lint -- --fix",
 		"lint-diff": "LIST=`git diff-index --name-only HEAD | grep '.*\\.js$';`; if [ \"$LIST\" ]; then eslint $LIST; fi",
 		"precommit-msg": "echo 'Running pre-commit checks... (skip using --no-verify)' && exit 0",
-		"semantic-release": "semantic-release",
 		"test": "nyc mocha test --recursive"
 	},
 	"repository": {
@@ -36,10 +35,9 @@
 		"requireindex": "^1.2.0"
 	},
 	"devDependencies": {
+		"@5app/semantic-release-config": "^1.0.0",
 		"@commitlint/cli": "^13.1.0",
 		"@commitlint/config-conventional": "^13.1.0",
-		"@semantic-release/changelog": "^6.0.0",
-		"@semantic-release/git": "^10.0.0",
 		"eslint": "^7.20.0",
 		"eslint-config-5app": "^0.15.1",
 		"eslint-config-prettier": "^8.0.0",
@@ -49,7 +47,7 @@
 		"nyc": "^15.1.0",
 		"prettier": "^2.2.1",
 		"pretty-quick": "^3.1.0",
-		"semantic-release": "^18.0.0"
+		"semantic-release": "^19.0.2"
 	},
 	"nyc": {
 		"check-coverage": true,
