@@ -1,3 +1,10 @@
+## [1.9.9](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.8...v1.9.9) (2022-09-16)
+
+
+### Bug Fixes
+
+* **dictionary:** add EXISTS ([c8dc2a2](https://github.com/5app/eslint-plugin-sequel/commit/c8dc2a2de5b204c8a85da50ef7ee044eff4de15e))
+
 ## [1.9.8](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.7...v1.9.8) (2021-09-03)
 
 
