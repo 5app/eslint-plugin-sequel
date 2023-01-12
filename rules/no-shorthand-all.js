@@ -5,7 +5,7 @@ const createSQLTemplateElementHandler = require('../utils/createSQLTemplateEleme
  * @param {object} node - Element Node
  * @param {object} context - Context
  * @param {object} context.options - Options
- * @returns {object} Returns a format object or undefined
+ * @returns {object|undefined} Returns a format object or undefined
  */
 function templateElementHandler(node, {options}) {
 	// Raw value

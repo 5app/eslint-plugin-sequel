@@ -57,7 +57,7 @@ module.exports = {
 
 		if (option === 'tab') {
 			// Replace space before tabs
-			normalizeWhitespace = (m) =>
+			normalizeWhitespace = m =>
 				m.replace(/( {4})|( {1,3}\t)|( {1,3})/g, TAB);
 		} else {
 			// Regexp
@@ -66,7 +66,7 @@ module.exports = {
 				'g'
 			);
 			// Replace tabs with spaces
-			normalizeWhitespace = (m) => m.replace(spaceReg, indent);
+			normalizeWhitespace = m => m.replace(spaceReg, indent);
 		}
 
 		/**
@@ -79,7 +79,7 @@ module.exports = {
 			// Base indent, nothing can be less than this
 			const indentOffset = offset + indent;
 
-			return (whitespace) => {
+			return whitespace => {
 				// Formatted whitespace prefix
 				const prefix = normalizeWhitespace(whitespace);
 
@@ -130,32 +130,30 @@ module.exports = {
 						return originalOffsetLength;
 					}
 
-					return text
-						.split('\n')
-						.reduce(
-							(originalOffsetLength, line, lineIndex, arr) => {
-								if (
-									lineIndex === 0 ||
-									((arr.length - 1 !== lineIndex ||
-										node.tail) &&
-										/^\s*$/.test(line))
-								) {
-									return originalOffsetLength;
-								}
-								const lineIndent = line.match(/^\s*/)[0];
-								const lineOffsetLength =
-									normalizeWhitespace(lineIndent).length;
+					return text.split('\n').reduce(
+						// eslint-disable-next-line max-params
+						(originalOffsetLength, line, lineIndex, arr) => {
+							if (
+								lineIndex === 0 ||
+								((arr.length - 1 !== lineIndex || node.tail) &&
+									/^\s*$/.test(line))
+							) {
+								return originalOffsetLength;
+							}
+							const lineIndent = line.match(/^\s*/)[0];
+							const lineOffsetLength =
+								normalizeWhitespace(lineIndent).length;
 
-								if (originalOffsetLength === null) {
-									return lineOffsetLength;
-								}
-								return Math.min(
-									lineOffsetLength,
-									originalOffsetLength
-								);
-							},
-							originalOffsetLength
-						);
+							if (originalOffsetLength === null) {
+								return lineOffsetLength;
+							}
+							return Math.min(
+								lineOffsetLength,
+								originalOffsetLength
+							);
+						},
+						originalOffsetLength
+					);
 				},
 				null
 			);
@@ -177,9 +175,7 @@ module.exports = {
 			const tagged = isTagged(parent);
 
 			// Join up the parts...
-			const literal = node.quasis
-				.map((quasi) => quasi.value.raw)
-				.join('x');
+			const literal = node.quasis.map(quasi => quasi.value.raw).join('x');
 
 			// Is this something other than a SQL expression?
 			if (!tagged && !isSqlQuery(literal)) {
@@ -225,7 +221,7 @@ module.exports = {
 						replaced +
 						(node.tail ? '`' : '${');
 
-					const fix = (fixer) => fixer.replaceText(node, proposed);
+					const fix = fixer => fixer.replaceText(node, proposed);
 
 					context.report({
 						node,

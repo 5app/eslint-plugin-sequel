@@ -82,9 +82,7 @@ module.exports = {
 			const tagged = isTagged(parent);
 
 			// Join up the parts...
-			const literal = node.quasis
-				.map((quasi) => quasi.value.raw)
-				.join('x');
+			const literal = node.quasis.map(quasi => quasi.value.raw).join('x');
 
 			// Is this something other than a SQL expression?
 			if (!tagged && !isSqlQuery(literal)) {
