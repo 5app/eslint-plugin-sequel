@@ -35,7 +35,7 @@ module.exports = {
 			// If this has TemplateExpressions, e.g. `SELECT ${expression}...`
 			if (!tagged && node.expressions.length) {
 				const literal = node.quasis
-					.map((quasi) => quasi.value.raw)
+					.map(quasi => quasi.value.raw)
 					.join('x');
 
 				if (isSqlQuery(literal)) {

@@ -3,7 +3,7 @@
  * @param {object} parent - TaggedTemplateExpression with potential name...
  * @returns {boolean} True if it's tagged with a function named like SQL
  */
-module.exports = (parent) => {
+module.exports = parent => {
 	return (
 		parent &&
 		parent.type === 'TaggedTemplateExpression' &&

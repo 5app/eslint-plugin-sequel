@@ -56,7 +56,7 @@ ruleTester.run('no-eol-command', rule, {
 			'could not delete from sql',
 			'SELECT MAX(${column}) FROM foobar WHERE a IN ("in")',
 		].map(
-			(expression) => `const column = "*"; foo.query(\`${expression}\`);`
+			expression => `const column = "*"; foo.query(\`${expression}\`);`
 		),
 	],
 });

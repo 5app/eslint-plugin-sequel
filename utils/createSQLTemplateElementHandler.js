@@ -11,7 +11,7 @@ function isSqlQuery(str) {
 }
 
 function createSQLTemplateElementHandler({templateElementHandler}) {
-	return (context) => {
+	return context => {
 		/**
 		 * Validate node.
 		 * @param {object} node - Node
@@ -24,9 +24,7 @@ function createSQLTemplateElementHandler({templateElementHandler}) {
 			const tagged = isTagged(parent);
 
 			// Is this a SQL statement?
-			const literal = node.quasis
-				.map((quasi) => quasi.value.raw)
-				.join('x');
+			const literal = node.quasis.map(quasi => quasi.value.raw).join('x');
 
 			if (!tagged && !isSqlQuery(literal)) {
 				return;
@@ -50,8 +48,7 @@ function createSQLTemplateElementHandler({templateElementHandler}) {
 							(index ? '}' : '`') +
 							fix +
 							(node.tail ? '`' : '${');
-						report.fix = (fixer) =>
-							fixer.replaceText(node, proposed);
+						report.fix = fixer => fixer.replaceText(node, proposed);
 					}
 
 					context.report({

@@ -3,7 +3,7 @@ const createSQLTemplateElementHandler = require('../utils/createSQLTemplateEleme
 /**
  * Template Element Handler for Function Case
  * @param {object} node - Element Node
- * @returns {object} Format object or undefined
+ * @returns {object|undefined} Format object or undefined
  */
 function templateElementHandler(node) {
 	const text = node.value.raw;
@@ -29,6 +29,7 @@ function templateElementHandler(node) {
 				line = line.trimEnd();
 			}
 
+			// eslint-disable-next-line max-params
 			return line.replace(regexp, (m, _, regIndex, original, groups) => {
 				// Get the named capture groups last paramater
 				const {quote} = groups;

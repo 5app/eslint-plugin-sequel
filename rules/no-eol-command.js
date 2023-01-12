@@ -5,7 +5,7 @@ const getOption = require('../utils/getOption');
  * Template Element Handler for no-eol-command
  * @param {object} node - Element Node
  * @param {object} context - Context
- * @returns {object} Returns a format object or undefined
+ * @returns {object|undefined} Returns a format object or undefined
  */
 function templateElementHandler(node, context) {
 	// Get the maximum option...

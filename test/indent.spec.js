@@ -62,5 +62,5 @@ ruleTester.run('indent', rule, {
 		'INSERT INTO foobar (${column}) VALUES ',
 		'UPDATE foobar SET ${column}',
 		'DELETE FROM\n    foobar WHERE ${column}',
-	].map((expression) => `const column = "*"; foo.query(\`${expression}\`);`),
+	].map(expression => `const column = "*"; foo.query(\`${expression}\`);`),
 });

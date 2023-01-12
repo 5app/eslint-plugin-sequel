@@ -71,5 +71,5 @@ ruleTester.run('function-case', rule, {
 		'INSERT INTO foobar (${column}) VALUES ',
 		'UPDATE foobar SET ${column}',
 		'DELETE FROM foobar WHERE ${column}',
-	].map((expression) => `const column = "*"; foo.query(\`${expression}\`);`),
+	].map(expression => `const column = "*"; foo.query(\`${expression}\`);`),
 });

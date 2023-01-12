@@ -3,7 +3,7 @@ const createSQLTemplateElementHandler = require('../utils/createSQLTemplateEleme
 /**
  * Template Element Handler for Function Case
  * @param {object} node - Element Node
- * @returns {object} Returns a format object or undefined
+ * @returns {object|undefined} Returns a format object or undefined
  */
 function templateElementHandler(node) {
 	const text = node.value.raw;
