@@ -16,7 +16,7 @@
 		"utils/"
 	],
 	"scripts": {
-		"prepare": "is-ci || husky pre",
+		"prepare": "is-ci || husky install",
 		"lint": "eslint ./",
 		"lint-fix": "npm run lint -- --fix",
 		"lint-diff": "LIST=`git diff-index --name-only HEAD | grep '.*\\.js$';`; if [ \"$LIST\" ]; then eslint $LIST; fi",
