@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
-npx pretty-quick --staged
+
+LIST=`git diff-index --name-only HEAD`; if [ "$LIST" ]; then npx prettier --write $LIST; git add $LIST; fi
 npm run precommit-msg
 npm run lint-diff
