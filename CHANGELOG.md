@@ -1,3 +1,10 @@
+## [1.9.10](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.9...v1.9.10) (2023-07-19)
+
+
+### Bug Fixes
+
+* **deps:** npm audit fix ([2d0baa7](https://github.com/5app/eslint-plugin-sequel/commit/2d0baa7282da63e03f6e94c3ca783ac8c9e94946))
+
 ## [1.9.9](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.8...v1.9.9) (2022-09-16)
 
 

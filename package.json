@@ -1,6 +1,6 @@
 {
 	"name": "eslint-plugin-sequel",
-	"version": "1.9.9",
+	"version": "1.9.10",
 	"description": "Eslint rules for inline SQL",
 	"keywords": [
 		"eslint",
