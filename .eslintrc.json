@@ -3,6 +3,8 @@
 	"extends": ["5app", "prettier"],
 	"plugins": ["prettier"],
 	"rules": {
-		"prettier/prettier": "error"
+		"prettier/prettier": "error",
+		"unicorn/better-regex": 0,
+		"prefer-object-has-own": 0
 	}
 }

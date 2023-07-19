@@ -221,6 +221,7 @@ module.exports = {
 						replaced +
 						(node.tail ? '`' : '${');
 
+					// eslint-disable-next-line func-style
 					const fix = fixer => fixer.replaceText(node, proposed);
 
 					context.report({

@@ -1,5 +1,5 @@
 const requireIndex = require('requireindex');
-const path = require('path');
+const path = require('node:path');
 
 // import all rules in /rules
 module.exports = {
