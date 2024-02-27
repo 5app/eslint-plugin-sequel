@@ -38,8 +38,8 @@
 	"devDependencies": {
 		"@5app/prettier-config": "^1.0.4",
 		"@5app/semantic-release-config": "^1.1.0",
-		"@commitlint/cli": "^17.6.7",
-		"@commitlint/config-conventional": "^17.6.7",
+		"@commitlint/cli": "^19.0.0",
+		"@commitlint/config-conventional": "^19.0.0",
 		"eslint": "^8.45.0",
 		"eslint-config-5app": "^0.19.1",
 		"eslint-config-prettier": "^8.8.0",
