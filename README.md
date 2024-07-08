@@ -30,22 +30,34 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
 	"rules": {
-		"sequel/function-case": 2,
-		"sequel/indent": [2, "tab"],
-		"sequel/max-placeholders": [2, {"max": 3}],
-		"sequel/no-eol-command": [2, {"allowOnOwnLine": true}],
+		"sequel/allowed-functions": [
+			"error"
+			{"disallow": ["GROUP_CONCAT"]}
+		],
+		"sequel/function-case": "error",
+		"sequel/indent": ["error", "tab"],
+		"sequel/max-placeholders": [
+			"error",
+			{"max": 3}
+		],
+		"sequel/no-eol-command": [
+			"error",
+			{"allowOnOwnLine": true}
+		],
 		"sequel/no-shorthand-all": [
-			2,
+			"error",
 			{"allowQualified": true, "allowCountAll": true}
 		],
-		"sequel/no-unsafe-query": 2,
-		"sequel/spacing": 2
+		"sequel/no-unsafe-query": "error",
+		"sequel/spacing": "error"
 	}
 }
 ```
 
 ## Rules
 
+-   `sequel/allowed-functions`: List functions which are **not** allowed
+    -   `disallow`: Array of disallowed SQL functions
 -   `sequel/function-case`: Makes SQL function names uppercase, e.g. 'SELECT' **fixable**
 -   `sequel/indent`: Enforces indentation **fixable**
     -   `'tab'|Number`: Defines the characters to use, where Number is given it uses spaces (default `2`).

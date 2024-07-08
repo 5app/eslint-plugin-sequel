@@ -38,24 +38,31 @@ function createSQLTemplateElementHandler({templateElementHandler}) {
 					return;
 				}
 
-				const meta = templateElementHandler(node, context);
+				const incidents = templateElementHandler(node, context);
 
-				if (meta) {
-					const {fix, ...report} = meta;
-
-					if (fix) {
-						const proposed =
-							(index ? '}' : '`') +
-							fix +
-							(node.tail ? '`' : '${');
-						report.fix = fixer => fixer.replaceText(node, proposed);
-					}
-
-					context.report({
-						node,
-						...report,
-					});
+				if (!incidents) {
+					return;
 				}
+
+				(Array.isArray(incidents) ? incidents : [incidents]).forEach(
+					meta => {
+						const {fix, ...report} = meta;
+
+						if (fix) {
+							const proposed =
+								(index ? '}' : '`') +
+								fix +
+								(node.tail ? '`' : '${');
+							report.fix = fixer =>
+								fixer.replaceText(node, proposed);
+						}
+
+						context.report({
+							node,
+							...report,
+						});
+					}
+				);
 			});
 		}
 
