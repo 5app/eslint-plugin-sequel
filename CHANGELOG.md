@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.10...v1.10.0) (2024-07-08)
+
+
+### Features
+
+* **allowed-functions:** rule allowed-functions or rather disallowed, fixes [#86](https://github.com/5app/eslint-plugin-sequel/issues/86) ([d2be98c](https://github.com/5app/eslint-plugin-sequel/commit/d2be98c4766cb5f47b0ab9e8f41675a9c952409f))
+
 ## [1.9.10](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.9...v1.9.10) (2023-07-19)
 
 
