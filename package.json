@@ -38,18 +38,18 @@
 	"devDependencies": {
 		"@5app/prettier-config": "^1.0.4",
 		"@5app/semantic-release-config": "^1.1.0",
-		"@commitlint/cli": "^17.6.7",
-		"@commitlint/config-conventional": "^17.6.7",
+		"@commitlint/cli": "^19.3.0",
+		"@commitlint/config-conventional": "^19.2.2",
 		"eslint": "^8.45.0",
 		"eslint-config-5app": "^0.19.1",
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-prettier": "^5.0.0",
-		"husky": "^8.0.3",
+		"husky": "^9.0.11",
 		"is-ci": "^3.0.1",
-		"mocha": "^10.2.0",
-		"nyc": "^15.1.0",
-		"prettier": "^3.0.0",
-		"semantic-release": "^21.0.7"
+		"mocha": "^10.6.0",
+		"nyc": "^17.0.0",
+		"prettier": "^3.3.2",
+		"semantic-release": "^24.0.0"
 	},
 	"nyc": {
 		"check-coverage": true,
