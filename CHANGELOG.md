@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.10.0...v1.11.0) (2024-07-15)
+
+
+### Features
+
+* **no-backticks:** new rule to prevent incompatible backticks, noissue ([0181fce](https://github.com/5app/eslint-plugin-sequel/commit/0181fce8ff78e595829f248e854d63cc608ded49))
+
 # [1.10.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.9.10...v1.10.0) (2024-07-08)
 
 
