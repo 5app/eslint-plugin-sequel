@@ -40,6 +40,7 @@ Then configure the rules you want to use under the rules section.
 			"error",
 			{"max": 3}
 		],
+		"sequel/no-backticks": "error",
 		"sequel/no-eol-command": [
 			"error",
 			{"allowOnOwnLine": true}
@@ -63,6 +64,7 @@ Then configure the rules you want to use under the rules section.
     -   `'tab'|Number`: Defines the characters to use, where Number is given it uses spaces (default `2`).
 -   `sequel/max-placeholders`: Placeholders, `?` character, can be hard to read if there are many in the same SQL string.
     -   `max`: Maximum number of placeholders allowed (default `3`)
+-   `sequel/no-backticks`: Prevent the use of non-standard backticks to quote identifiers - use quotes, table prefixes on fields, or naming which does not conflict.
 -   `sequel/no-eol-command`: Avoid ending lines with a SQL command which is always followed by a value.
     -   `allowOnOwnLine`: Permits the command to appear if it is not preceeded by anything, allowing commands to be easily read.
 -   `sequel/no-shorthand-all`: Avoid using the ambiguous shorthand all '\*'.
