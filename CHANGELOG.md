@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/5app/eslint-plugin-sequel/compare/v1.12.0...v1.12.1) (2024-08-01)
+
+
+### Bug Fixes
+
+* **no-shorthand-offset:** fix perf issue with lookbehind assertion, noissue ([8c62032](https://github.com/5app/eslint-plugin-sequel/commit/8c6203214c8792cd83eb5b814f63e234e6c386a9))
+
 # [1.12.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.11.0...v1.12.0) (2024-08-01)
 
 
