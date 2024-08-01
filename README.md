@@ -49,6 +49,7 @@ Then configure the rules you want to use under the rules section.
 			"error",
 			{"allowQualified": true, "allowCountAll": true}
 		],
+		"sequel/no-shorthand-offset": "error",
 		"sequel/no-unsafe-query": "error",
 		"sequel/spacing": "error"
 	}
@@ -70,5 +71,6 @@ Then configure the rules you want to use under the rules section.
 -   `sequel/no-shorthand-all`: Avoid using the ambiguous shorthand all '\*'.
     -   `allowQualified` (Boolean, default: `false`): Permits qualified shorthand all e.g. `table.*` to get everything from a table.
     -   `allowCountAll` (Boolean, default: `false`): Permits within `COUNT()` e.g. `COUNT(*)`.
+-   `sequel/no-shorthand-offset`: Prevent non-standard SQL `LIMIT offset, count`
 -   `sequel/no-unsafe-query`: Checks whether there are potentially any vulnerable SQL'ish template literals, fix by using SQL placeholders or using [SQL templating formatter](https://www.npmjs.com/search?q=sql%20template)
 -   `sequel/spacing`: Multiple spaces and tabs should only be used for indentation **fixable**
