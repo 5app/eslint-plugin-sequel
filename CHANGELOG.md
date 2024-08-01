@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.11.0...v1.12.0) (2024-08-01)
+
+
+### Features
+
+* **no-shorthand-offset:** prevent 'LIMIT offset, count' syntax ([94e0409](https://github.com/5app/eslint-plugin-sequel/commit/94e04098c52133349acd3476fdc541e1dfe714dc))
+
 # [1.11.0](https://github.com/5app/eslint-plugin-sequel/compare/v1.10.0...v1.11.0) (2024-07-15)
 
 
