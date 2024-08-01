@@ -1,4 +1,5 @@
 const createSQLTemplateElementHandler = require('../utils/createSQLTemplateElementHandler');
+const getLocation = require('../utils/getLocation.js');
 
 /**
  * Template Element Handler for Function Names allowed and disallowed
@@ -23,28 +24,13 @@ function templateElementHandler(node, context) {
 
 	for (const match of test) {
 		const {funcName} = match.groups;
-		const prefixLines = text.slice(0, match.index).split('\n');
-		const prefixLast = prefixLines.pop();
-		const column =
-			(prefixLines.length === 0 ? node.loc.start?.column + 1 : 0) +
-			prefixLast.length;
-		const line = node.loc.start?.line + prefixLines.length;
 
 		const report = {
 			messageId: 'isDisallowed',
 			data: {
 				funcName,
 			},
-			loc: {
-				start: {
-					line,
-					column,
-				},
-				end: {
-					line,
-					column: column + funcName.length,
-				},
-			},
+			...getLocation(node, match.index, funcName),
 		};
 
 		incidents.push(report);
