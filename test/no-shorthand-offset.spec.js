@@ -24,9 +24,9 @@ ruleTester.run('no-shorthand-offset', rule, {
 			errors: [
 				exceed({
 					line: 1,
-					column: 32,
+					column: 49,
 					endLine: 1,
-					endColumn: 34,
+					endColumn: 51,
 				}),
 			],
 		},
@@ -34,10 +34,10 @@ ruleTester.run('no-shorthand-offset', rule, {
 			code: 'const sql = `select ${column} from foobar \n LIMIT 100\n\n, 100`;',
 			errors: [
 				exceed({
-					line: 3,
-					column: 2,
-					endLine: 3,
-					endColumn: 8,
+					line: 2,
+					column: 8,
+					endLine: 2,
+					endColumn: 14,
 				}),
 			],
 		},

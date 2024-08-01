@@ -1,5 +1,6 @@
 const isSqlQuery = require('../utils/sqlParser.js');
 const isTagged = require('../utils/isTagged.js');
+const getLocation = require('../utils/getLocation.js');
 
 /**
  * no-shorthand-offset
@@ -53,42 +54,25 @@ module.exports = {
 			templateLiteralNode.quasis.forEach((node, index) => {
 				// Is there a `LIMIT offset,` clause?
 				const hardcodedShortHandOffset = node.value.raw.match(
-					/(?<=LIMIT(\s+(--.*\n)*)+)(\d+|\?)\s*,/i
+					/\b(?<prefix>limit(\s+(--.*\n)*)+)(?<body>(\d+|\?)\s*,)/i
 				);
 
 				if (hardcodedShortHandOffset) {
-					const matchStr = hardcodedShortHandOffset.at(0);
-
-					const prefixLines = matchStr
-						.slice(0, hardcodedShortHandOffset.index)
-						.split('\n');
-					const prefixLast = prefixLines.pop();
-					const column =
-						(prefixLines.length === 0
-							? node.loc.start?.column + 1
-							: 0) + prefixLast.length;
-					const line = node.loc.start?.line + prefixLines.length;
+					const matchStr = hardcodedShortHandOffset.groups.body;
+					const matchIndex =
+						hardcodedShortHandOffset.index +
+						hardcodedShortHandOffset.groups.prefix.length;
 
 					incidents.push({
-						node,
 						messageId: 'nonStandardSQL',
-						loc: {
-							start: {
-								line,
-								column,
-							},
-							end: {
-								line,
-								column: column + matchStr.length,
-							},
-						},
+						...getLocation(node, matchIndex, matchStr),
 					});
 					return;
 				}
 
 				// Is there a `LIMIT` clause?
 				const endsInLimitClause = node.value.raw.match(
-					/LIMIT(\s+(--.*\n)*)+$/i
+					/limit(\s+(--.*\n)*)+$/i
 				);
 
 				if (endsInLimitClause && !node.tail) {
@@ -111,32 +95,9 @@ module.exports = {
 						const matchIndex =
 							nextNode.value.raw.indexOf(strPattern);
 
-						const matchStr = nextStartsWithComma.at(0);
-
-						const prefixLines = matchStr
-							.slice(0, matchIndex)
-							.split('\n');
-						const prefixLast = prefixLines.pop();
-						const column =
-							(prefixLines.length === 0
-								? nextNode.loc.start?.column + 1
-								: 0) + prefixLast.length;
-						const line =
-							nextNode.loc.start?.line + prefixLines.length;
-
 						incidents.push({
-							node: nextNode,
 							messageId: 'nonStandardSQL',
-							loc: {
-								start: {
-									line,
-									column,
-								},
-								end: {
-									line,
-									column: column + strPattern.length,
-								},
-							},
+							...getLocation(nextNode, matchIndex, strPattern),
 						});
 					}
 				}
