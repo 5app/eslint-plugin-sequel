@@ -3,11 +3,15 @@ name: NPM Audit
 on: [push]
 
 jobs:
-    audit:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
-              with:
-                  node-version: 12
-            - run: npm audit
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            package-lock.json
+            package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm audit
