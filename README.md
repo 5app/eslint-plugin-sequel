@@ -30,31 +30,47 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
 	"rules": {
-		"sequel/function-case": 2,
-		"sequel/indent": [2, "tab"],
-		"sequel/max-placeholders": [2, {"max": 3}],
-		"sequel/no-eol-command": [2, {"allowOnOwnLine": true}],
+		"sequel/allowed-functions": [
+			"error"
+			{"disallow": ["GROUP_CONCAT"]}
+		],
+		"sequel/function-case": "error",
+		"sequel/indent": ["error", "tab"],
+		"sequel/max-placeholders": [
+			"error",
+			{"max": 3}
+		],
+		"sequel/no-backticks": "error",
+		"sequel/no-eol-command": [
+			"error",
+			{"allowOnOwnLine": true}
+		],
 		"sequel/no-shorthand-all": [
-			2,
+			"error",
 			{"allowQualified": true, "allowCountAll": true}
 		],
-		"sequel/no-unsafe-query": 2,
-		"sequel/spacing": 2
+		"sequel/no-shorthand-offset": "error",
+		"sequel/no-unsafe-query": "error",
+		"sequel/spacing": "error"
 	}
 }
 ```
 
 ## Rules
 
+-   `sequel/allowed-functions`: List functions which are **not** allowed
+    -   `disallow`: Array of disallowed SQL functions
 -   `sequel/function-case`: Makes SQL function names uppercase, e.g. 'SELECT' **fixable**
 -   `sequel/indent`: Enforces indentation **fixable**
     -   `'tab'|Number`: Defines the characters to use, where Number is given it uses spaces (default `2`).
 -   `sequel/max-placeholders`: Placeholders, `?` character, can be hard to read if there are many in the same SQL string.
     -   `max`: Maximum number of placeholders allowed (default `3`)
+-   `sequel/no-backticks`: Prevent the use of non-standard backticks to quote identifiers - use quotes, table prefixes on fields, or naming which does not conflict.
 -   `sequel/no-eol-command`: Avoid ending lines with a SQL command which is always followed by a value.
     -   `allowOnOwnLine`: Permits the command to appear if it is not preceeded by anything, allowing commands to be easily read.
 -   `sequel/no-shorthand-all`: Avoid using the ambiguous shorthand all '\*'.
     -   `allowQualified` (Boolean, default: `false`): Permits qualified shorthand all e.g. `table.*` to get everything from a table.
     -   `allowCountAll` (Boolean, default: `false`): Permits within `COUNT()` e.g. `COUNT(*)`.
+-   `sequel/no-shorthand-offset`: Prevent non-standard SQL `LIMIT offset, count`
 -   `sequel/no-unsafe-query`: Checks whether there are potentially any vulnerable SQL'ish template literals, fix by using SQL placeholders or using [SQL templating formatter](https://www.npmjs.com/search?q=sql%20template)
 -   `sequel/spacing`: Multiple spaces and tabs should only be used for indentation **fixable**
